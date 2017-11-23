@@ -7,14 +7,14 @@
       mc:Ignorable="d" 
       Title="Employees - Home" Height="333.717" Width="501.823" >
 
-    
+
     <Grid Margin="10,0,10,10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="3*" MaxHeight="40"/>
             <RowDefinition Height="17*"/>
@@ -65,5 +65,8 @@
 
         <!-- Details button in bottom right of grid-->
         <Button Grid.Column="1" Grid.Row="4" Click="Details_Click" Style="{StaticResource buttonStyle}" Height="Auto" Margin="0,9.6,-0.4,0.2">Details</Button>
+
+        <!-- Details button in bottom right of grid-->
+        <Button Grid.Column="1" Grid.Row="4" Click="Expenses_Click" Style="{StaticResource buttonStyle}" Height="Auto" Margin="0,9.548,196.6,0.252">Expenses</Button>
     </Grid>
 </Page>
