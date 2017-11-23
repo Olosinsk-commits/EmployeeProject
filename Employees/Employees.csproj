@@ -64,6 +64,7 @@
     <Compile Include="CompExpenses.xaml.cs">
       <DependentUpon>CompExpenses.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NameValidator.cs" />
     <Compile Include="PTSalesPerson.cs" />
     <Compile Include="SalesPerson.cs" />
     <Compile Include="SupportPerson.cs" />

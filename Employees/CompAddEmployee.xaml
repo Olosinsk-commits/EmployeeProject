@@ -42,10 +42,26 @@
             <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource headerTextStyle}" Content="Employee Details" />
 
             <!-- Field name/value labels in remaining rows -->
-            <Label Content="Name:" Grid.Column="0" Grid.Row="1" Style="{StaticResource labelStyle}" Margin="0" />
-            <Label Content="{Binding Name}" Grid.Column="1" Grid.Row="1" Style="{StaticResource labelStyle}" Margin="0" />
 
-            <Label Content="Role:" Grid.Column="0" Grid.Row="2" Style="{StaticResource labelStyle}" Margin="0" />
+            <Label Content="Name" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Name="label1" VerticalAlignment="Top" Width="56" />
+
+            <TextBox Height="23" HorizontalAlignment="Left" Grid.Row="1" Name="textBox1" VerticalAlignment="Top" Width="120" 
+                 Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" Grid.ColumnSpan="2" Margin="56,2.6,0,0">
+                
+                
+                <TextBox.Text>
+                    <Binding Path="PersonaName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <local:NameValidator></local:NameValidator>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <!--<Label Content="Name:" Grid.Column="0" Grid.Row="1" Style="{StaticResource labelStyle}" Margin="0" />
+            <Label Content="{Binding Name}" Grid.Column="1" Grid.Row="1" Style="{StaticResource labelStyle}" Margin="0" />-->
+
+            <!--<Label Content="Role:" Grid.Column="0" Grid.Row="2" Style="{StaticResource labelStyle}" Margin="0" />
             <Label Content="{Binding Role}" Grid.Column="1" Grid.Row="2" Style="{StaticResource labelStyle}" Margin="0" />
 
             <Label Content="Id:" Grid.Column="0" Grid.Row="3" Style="{StaticResource labelStyle}" Margin="0" />
@@ -67,7 +83,7 @@
             <Label Name="SpareProp1Value" Content="Value1" Grid.Column="1" Grid.Row="8" Style="{StaticResource labelStyle}" Margin="0"  />
 
             <Label Name="SpareProp2Name" Content="Spare2" Grid.Column="0" Grid.Row="9" Style="{StaticResource labelStyle}" Margin="0"  />
-            <Label Name="SpareProp2Value" Content="Value2" Grid.Column="1" Grid.Row="9" Style="{StaticResource labelStyle}" Margin="0"  />
+            <Label Name="SpareProp2Value" Content="Value2" Grid.Column="1" Grid.Row="9" Style="{StaticResource labelStyle}" Margin="0"  />-->
         </Grid>
     </Grid>
 </Page>
