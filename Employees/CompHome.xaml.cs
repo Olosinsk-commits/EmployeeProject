@@ -255,6 +255,8 @@ namespace Employees
                     dgEmps.ItemsSource = (List<Employee>)empList.FindAll(obj => !(obj is Manager || obj is SalesPerson));
                     break;
 
+
+
                 // All 
                 default:
                     dgEmps.ItemsSource = empList;
