@@ -73,6 +73,15 @@ namespace Employees
             }
         }
 
+        private void AddEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            // Show Employee details if one selected
+            if (dgEmps.SelectedIndex >= 0)
+            {
+                this.NavigationService.Navigate(new CompAddEmployee(this.dgEmps.SelectedItem));
+            }
+        }
+
         // Handle changes to Employee type radio buttons
         void employeeTypeRadioButtons_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

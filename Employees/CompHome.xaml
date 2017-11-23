@@ -68,6 +68,6 @@
 
         <!-- Details button in bottom right of grid-->
         <Button Grid.Column="1" Grid.Row="4" Click="Expenses_Click" Style="{StaticResource buttonStyle}" Height="Auto" Margin="0,9.548,176.6,0.252" Content="Expenses"/>
-        <Button Grid.Row="3" Click="Expenses_Click" Style="{StaticResource buttonStyle}" Height="Auto" Margin="0,54.6,20.4,149.4" Content="Add Employee" Width="105"/>
+        <Button Grid.Row="3" Click="AddEmployee_Click" Style="{StaticResource buttonStyle}" Height="Auto" Margin="0,54.6,20.4,149.4" Content="Add Employee" Width="105"/>
     </Grid>
 </Page>

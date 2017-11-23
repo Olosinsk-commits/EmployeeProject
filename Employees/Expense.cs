@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Employees
 {
+    [Serializable]
     public enum ExpenseCategory { Conference, Lodging, Meals, Misc, Travel }
 
     [Serializable]
