@@ -58,12 +58,22 @@
                 <DataGridTextColumn Header="Date" MinWidth="90"
                                     Binding="{Binding Date, ValidatesOnExceptions=True, StringFormat=d, NotifyOnTargetUpdated=True, 
                                                 Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <!--<DataGridComboBoxColumn Header="Category"  MinWidth="100" SelectedItemBinding="{Binding Category}" 
+                
+                <DataGridComboBoxColumn Header="Category"  MinWidth="100" SelectedItemBinding="{Binding Category}" 
                                         ItemsSource="{Binding Source={StaticResource ExpenseCategory}}" />
+
+                <DataGridTextColumn Header="Description" MinWidth="150" HeaderStyle="{StaticResource RightHeader}" 
+                                    ElementStyle="{StaticResource RightCell}" EditingElementStyle="{StaticResource RightCellEdit}"
+                                    Binding="{Binding Amount, ValidatesOnExceptions=True, StringFormat=C, NotifyOnTargetUpdated=True, 
+                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
                 <DataGridTextColumn Header="Amount" MinWidth="90" HeaderStyle="{StaticResource RightHeader}" 
                                     ElementStyle="{StaticResource RightCell}" EditingElementStyle="{StaticResource RightCellEdit}"
                                     Binding="{Binding Amount, ValidatesOnExceptions=True, StringFormat=C, NotifyOnTargetUpdated=True, 
-                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
+                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+
+            
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
