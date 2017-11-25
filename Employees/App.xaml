@@ -14,6 +14,23 @@
             <Setter Property="Opacity" Value="0.5" />
         </Style>
 
+        <!-- labels text style -->
+        <Style x:Key="labels">
+            <Setter Property="Label.VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="Label.FontFamily" Value="Trebuchet MS"></Setter>
+            <Setter Property="Label.FontWeight" Value="Bold"></Setter>
+            <Setter Property="Label.Height" Value="25"></Setter>
+            <Setter Property="Label.Foreground" Value="Black"></Setter>
+        </Style>
+
+        <!-- Box text style -->
+        <Style x:Key="textBox">
+            <Setter Property="Label.VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="Label.Margin" Value="72,1,0,0"></Setter>
+            <Setter Property="Label.FontWeight" Value="Bold"></Setter>
+            <Setter Property="Label.Height" Value="18"></Setter>
+        </Style>
+
         <!-- Header text style -->
         <Style x:Key="headerTextStyle">
             <Setter Property="Label.VerticalAlignment" Value="Center"></Setter>
@@ -137,7 +154,7 @@
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                         <Grid Width="12" Height="12">
                             <Ellipse Width="12" Height="12" Fill="Red" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBlock Foreground="AntiqueWhite" FontWeight="Heavy" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                            <TextBlock Foreground="AntiqueWhite" FontWeight="Heavy" Background="Beige" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
                                ToolTip="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
                             X
                             </TextBlock>
