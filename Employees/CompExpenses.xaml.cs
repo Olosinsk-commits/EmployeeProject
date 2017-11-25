@@ -89,11 +89,6 @@ namespace Employees
         {
             isBeingEdited = true;
         }
-
-        private void DgExp_BeingActive(object sender, DataGridBeginningEditEventArgs e)
-        {
-            isBeingActive = true;
-        }
         #endregion
     }
 }
