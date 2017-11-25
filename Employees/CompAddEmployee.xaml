@@ -59,13 +59,14 @@
             <Label Content="Pay:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="6" Name="label6" Style="{StaticResource labels}" />
 
             <Label Name="SpareProp1Name" Content="Spare1" Grid.Column="0" Grid.Row="7" Style="{StaticResource labels}"/>
+
             <Label Name="SpareProp2Name" Content="Spare2" Grid.Column="0" Grid.Row="8" Style="{StaticResource labels}" />
 
 
             <TextBox Name="textBox1" Style="{StaticResource textBox}"
                  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="1" >
                 <TextBox.Text>
-                    <Binding Path="PersonaName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                    <Binding Path="PersonaFirstName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
                         <Binding.ValidationRules>
                             <local:NameValidator></local:NameValidator>
                         </Binding.ValidationRules>
@@ -76,7 +77,7 @@
             <TextBox  Name="textBox2" Style="{StaticResource textBox}"
                  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="2">
                 <TextBox.Text>
-                    <Binding Path="PersonaName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                    <Binding Path="PersonaLastName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
                         <Binding.ValidationRules>
                             <local:NameValidator></local:NameValidator>
                         </Binding.ValidationRules>
@@ -87,7 +88,7 @@
             <TextBox  Name="textBox3" Style="{StaticResource textBox}"
                  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="3">
                 <TextBox.Text>
-                    <Binding Path="PersonaName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                    <Binding Path="PersonaRole" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
                         <Binding.ValidationRules>
                             <local:NameValidator></local:NameValidator>
                         </Binding.ValidationRules>
@@ -98,7 +99,7 @@
             <TextBox  Name="textBox4" Style="{StaticResource textBox}"
                  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="4">
                 <TextBox.Text>
-                    <Binding Path="PersonaName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                    <Binding Path="PersonaDOB" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
                         <Binding.ValidationRules>
                             <local:NameValidator></local:NameValidator>
                         </Binding.ValidationRules>
@@ -109,7 +110,7 @@
             <TextBox  Name="textBox5"  Style="{StaticResource textBox}"
                  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="5">
                 <TextBox.Text>
-                    <Binding Path="PersonaName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                    <Binding Path="PersonaLastName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
                         <Binding.ValidationRules>
                             <local:NameValidator></local:NameValidator>
                         </Binding.ValidationRules>
@@ -120,7 +121,7 @@
             <TextBox  Name="textBox6" Style="{StaticResource textBox}"
                  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="6">
                 <TextBox.Text>
-                    <Binding Path="PersonaName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                    <Binding Path="PersonaLastName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
                         <Binding.ValidationRules>
                             <local:NameValidator></local:NameValidator>
                         </Binding.ValidationRules>
@@ -131,7 +132,7 @@
             <TextBox  Name="textBox7" Style="{StaticResource textBox}"
                  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="7">
                 <TextBox.Text>
-                    <Binding Path="PersonaName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                    <Binding Path="PersonaLastName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
                         <Binding.ValidationRules>
                             <local:NameValidator></local:NameValidator>
                         </Binding.ValidationRules>
@@ -142,7 +143,7 @@
             <TextBox  Name="textBox8" Style="{StaticResource textBox}"
                  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" Grid.Row="8">
                 <TextBox.Text>
-                    <Binding Path="PersonaName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                    <Binding Path="PersonaLastName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
                         <Binding.ValidationRules>
                             <local:NameValidator></local:NameValidator>
                         </Binding.ValidationRules>
@@ -150,7 +151,7 @@
                 </TextBox.Text>
             </TextBox>
 
-            <Button Content="Save" Height="20" Grid.Column ="0" Grid.Row="10" Width="100" Margin="72,0,0,0" HorizontalAlignment="Left" Command="Save">
+            <Button Content="Save" Height="20" Grid.Column ="0" Grid.Row="10" Width="100" Margin="72,0,0,0" HorizontalAlignment="Center" Command="Save">
                 <Button.CommandBindings>
                     <!--<CommandBinding Command="Save" 
                     Executed="Save_Executed" CanExecute="Save_CanExecute"/>-->

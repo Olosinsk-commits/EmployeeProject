@@ -24,11 +24,13 @@ namespace Employees
         public CompAddEmployee()
         {
             InitializeComponent();
-            DataContext = this;
         }
 
 
-        public string PersonaName { get; set; }
+        public string PersonaFirstName { get ; set; }
+        public string PersonaLastName { get; set; }
+        public string PersonaRole { get; set; }
+        public string PersonaDOB { get; set; }
 
         public CompAddEmployee(Object data) : this()
         {
@@ -36,7 +38,18 @@ namespace Employees
 
             if (data is Employee)
             {
+
                 Employee emp = (Employee)data;
+                string name1 = "";
+                string value1 = "";
+                string name2 = "";
+                string value2 = "";
+
+                emp.SpareDetailProp1(ref name1, ref value1);
+                emp.SpareDetailProp2(ref name2, ref value2);
+
+                SpareProp1Name.Content = name1;
+                SpareProp2Name.Content = name2;
             }
             //public int Age { get; set; }
             //public string Phone { get; set; }
