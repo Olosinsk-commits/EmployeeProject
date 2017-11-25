@@ -16,6 +16,7 @@ using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+
 using System.IO;
 
 namespace Employees
@@ -53,8 +54,16 @@ namespace Employees
             // Set event handler for radio button changes
             this.employeeTypeRadioButtons.SelectionChanged += new SelectionChangedEventHandler(employeeTypeRadioButtons_SelectionChanged);
 
+            dgEmps.SelectionChanged += DgEmps_SelectionChanged;
+
             // Fill the Employees data grid
             dgEmps.ItemsSource = empList;
+        }
+
+        private void DgEmps_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnDetails.IsEnabled = true;
+            btnExpanses.IsEnabled = true;
         }
 
         private void Details_Click(object sender, RoutedEventArgs e)
@@ -75,6 +84,8 @@ namespace Employees
             }
         }
 
+
+
         private void AddEmployee_Click(object sender, RoutedEventArgs e)
         {
             // Show add employee page if "Add Employee" button selected
@@ -88,6 +99,7 @@ namespace Employees
         void employeeTypeRadioButtons_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             RefreshEmployeeList();
+
         }
 
         // Filter Employee list according to radio button setting

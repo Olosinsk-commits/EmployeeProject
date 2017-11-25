@@ -153,8 +153,8 @@
 
             <Button Content="Save" Height="20" Grid.Column ="0" Grid.Row="10" Width="100" Margin="72,0,0,0" HorizontalAlignment="Center" Command="Save">
                 <Button.CommandBindings>
-                    <!--<CommandBinding Command="Save" 
-                    Executed="Save_Executed" CanExecute="Save_CanExecute"/>-->
+                    <CommandBinding Command="Save" 
+                    Executed="Save_Executed" CanExecute="Save_CanExecute"/>
                 </Button.CommandBindings>
             </Button>
 

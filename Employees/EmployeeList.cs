@@ -40,8 +40,8 @@ namespace Employees
             SupportPerson mike = new SupportPerson("Mike", "Roberts", DateTime.Parse("10/31/1975"), 15000, "229-67-7898", ShiftName.One);
             SupportPerson steve = new SupportPerson("Steve", "Kinny", DateTime.Parse("11/21/1982"), 80000, "913-43-4343", ShiftName.Two);
 
-            dan.Expenses.Add(new Expense(DateTime.Parse("1/25/2017"), ExpenseCategory.Travel, 300.55));
-            dan.Expenses.Add(new Expense(DateTime.Parse("1/27/2017"), ExpenseCategory.Meals,  27.61));
+            dan.Expenses.Add(new Expense(DateTime.Parse("1/25/2017"), ExpenseCategory.Travel, "Ticket to the moon", 300.55));
+            dan.Expenses.Add(new Expense(DateTime.Parse("1/27/2017"), ExpenseCategory.Meals,  "Bananas", 27.61));
             dan.Expenses.Add(new Expense(DateTime.Parse("1/29/2017"), ExpenseCategory.Lodging,  423.15));
 
             // Bonuses and promotions
