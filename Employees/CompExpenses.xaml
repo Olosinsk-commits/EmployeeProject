@@ -52,13 +52,15 @@
 
         <!-- Employees data grid -->
         <DataGrid Name="dgExpenses" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" AutoGenerateColumns="False" HeadersVisibility="Column" 
-                  RowEditEnding="DgExp_RowEditEnding" PreviewKeyDown="DgExp_PreviewKeyDown"
+                  RowEditEnding="DgExp_RowEditEnding"
+                  PreviewKeyDown="DgExp_PreviewKeyDown"
                   AddingNewItem="DgExp_AddingNewItem" BeginningEdit="DgExp_BeginningEdit">
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Date" MinWidth="100"
                                     Binding="{Binding Date, ValidatesOnExceptions=True, StringFormat=d, NotifyOnTargetUpdated=True, 
                                                 Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                
+
                 <DataGridComboBoxColumn Header="Category"  MinWidth="100" SelectedItemBinding="{Binding Category}" 
                                         ItemsSource="{Binding Source={StaticResource ExpenseCategory}}" />
 
@@ -73,7 +75,7 @@
                                                 Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
 
-            
+
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

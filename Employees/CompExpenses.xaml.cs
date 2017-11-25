@@ -94,5 +94,21 @@ namespace Employees
             isBeingEdited = true;
         }
         #endregion
+
+        //private void dgExpenses_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        //{
+        //    Expense exp = e.Row.DataContext as Expense;
+        //    if (e.Row.Item != null)
+
+        //    {
+        //        Expense expense = new Expense();
+        //        {
+        //            expense.Date = exp.Date;
+        //            expense.Category = exp.Category;
+        //            expense.Amount = exp.Amount;
+        //            emp.Expenses.Add(expense);
+        //        }
+        //    }
+        //}
     }
 }

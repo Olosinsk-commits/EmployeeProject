@@ -4,6 +4,9 @@
              xmlns:core="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:Employees"
              StartupUri="MainWindow.xaml">
+
+
+
     <Application.Resources>
         <!-- Watermark image -->
         <Style x:Key="WatermarkImage" TargetType="{x:Type Image}">
@@ -13,6 +16,7 @@
             <Setter Property="Width" Value="230" />
             <Setter Property="Opacity" Value="0.5" />
         </Style>
+
 
         <!-- labels text style -->
         <Style x:Key="labels">
