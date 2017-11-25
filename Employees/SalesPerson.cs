@@ -64,7 +64,7 @@ namespace Employees
         public override void DisplayStats()
         {
             base.DisplayStats();
-            Console.WriteLine("Number of sales: {0:N0}", SalesNumber);
+            Console.WriteLine("Sales Number: {0:N0}", SalesNumber);
         }
 
         public override void SpareDetailProp1(ref string name, ref string value)
