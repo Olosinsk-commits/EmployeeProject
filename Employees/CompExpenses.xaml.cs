@@ -33,6 +33,7 @@ namespace Employees
             DataContext = this;
         }
 
+
         // Custom constructor to pass Employee object
         public CompExpenses(object data) : this()
         {
@@ -45,8 +46,11 @@ namespace Employees
 
                 // Bind data grid to Employee expenses
                 dgExpenses.ItemsSource = new ObservableCollection<Expense>(emp.Expenses);
+
+
             }
         }
+
         #endregion
 
         #region Event handlers

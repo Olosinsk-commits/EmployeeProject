@@ -27,7 +27,7 @@ namespace Employees
 
         string filename = "Employees.dat";
 
-        static List<Employee> InitialEmployees()
+        public static List<Employee> InitialEmployees()
         {
             Executive dan = new Executive("Dan", "Doe", DateTime.Parse("3/20/1963"), 200000, "121-12-1211", 50000, ExecTitle.CEO);
             Executive connie = new Executive("Connie", "Chung", DateTime.Parse("2/5/1972"), 150000, "229-67-7898", 40000, ExecTitle.CFO);
@@ -78,7 +78,7 @@ namespace Employees
         public EmployeeList(string filename)
         {
             this.filename = filename;
-            File.Delete(filename);
+            //File.Delete(filename);
 
             if (File.Exists(filename))
             {
@@ -95,7 +95,7 @@ namespace Employees
         }
 
         #region Save/Load LIST of Employees
-        static List<Employee> LoadEmployeesFromBinaryFile(string fileName)
+        public static List<Employee> LoadEmployeesFromBinaryFile(string fileName)
         {
             using (Stream fStream = File.OpenRead(fileName))
             {
@@ -105,7 +105,7 @@ namespace Employees
         }
 
 
-        static void SaveEmployeesAsBinary(string fileName, List<Employee> emps)
+        public static void SaveEmployeesAsBinary(string fileName, List<Employee> emps)
         {
             using (Stream fStream = new FileStream(fileName,
               FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))

@@ -23,6 +23,13 @@ namespace Employees
         public MainWindow()
         {
             InitializeComponent();
+            Application.Current.Exit += Current_Exit;
+        }
+
+        private void Current_Exit(object sender, ExitEventArgs e)
+        {
+            string filename = "Employees.dat";
+            EmployeeList.SaveEmployeesAsBinary(filename, CompHome.empList);
         }
     }
 }

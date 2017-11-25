@@ -16,8 +16,8 @@ using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
-
 using System.IO;
+
 
 namespace Employees
 {
@@ -38,7 +38,7 @@ namespace Employees
     public partial class CompHome : Page
     {
         const string filename = "Employees.dat";
-        static EmployeeList empList = new EmployeeList(filename);
+        public static EmployeeList empList = new EmployeeList(filename);
 
         public bool ddDashEnabled = false;
 
@@ -59,6 +59,7 @@ namespace Employees
             // Fill the Employees data grid
             dgEmps.ItemsSource = empList;
         }
+
 
         private void DgEmps_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
