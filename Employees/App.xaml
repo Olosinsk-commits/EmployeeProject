@@ -21,6 +21,7 @@
             <Setter Property="Label.FontWeight" Value="Bold"></Setter>
             <Setter Property="Label.Height" Value="25"></Setter>
             <Setter Property="Label.Foreground" Value="Black"></Setter>
+            <Setter Property="Label.Margin" Value="-20,0,0,0"></Setter>
         </Style>
 
         <!-- Box text style -->

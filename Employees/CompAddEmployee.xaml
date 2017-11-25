@@ -21,7 +21,7 @@
         <!-- Employee details in second column of outer grid -->
         <Grid Grid.ColumnSpan="5" Margin="130,0,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200.4" />
+                <ColumnDefinition Width="220.4" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -58,7 +58,7 @@
             <Label Content="SSN:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="5" Name="label5" Style="{StaticResource labels}" />
             <Label Content="Pay:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="6" Name="label6" Style="{StaticResource labels}" />
 
-            <Label Name="SpareProp1Name" Content="Spare1" Grid.Column="0" Grid.Row="7" Style="{StaticResource labels}"/>
+            <Label Name="SpareProp1Name"  Content="Spare1" Grid.Column="0" Grid.Row="7" Style="{StaticResource labels}"/>
 
             <Label Name="SpareProp2Name" Content="Spare2" Grid.Column="0" Grid.Row="8" Style="{StaticResource labels}" />
 
@@ -132,7 +132,7 @@
             <TextBox  Name="textBox7" Style="{StaticResource textBox}"
                  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="7">
                 <TextBox.Text>
-                    <Binding Path="PersonaLastName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                    <Binding Path="Spare1" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
                         <Binding.ValidationRules>
                             <local:NameValidator></local:NameValidator>
                         </Binding.ValidationRules>
@@ -143,7 +143,7 @@
             <TextBox  Name="textBox8" Style="{StaticResource textBox}"
                  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" Grid.Row="8">
                 <TextBox.Text>
-                    <Binding Path="PersonaLastName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                    <Binding Path="Spare2" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
                         <Binding.ValidationRules>
                             <local:NameValidator></local:NameValidator>
                         </Binding.ValidationRules>

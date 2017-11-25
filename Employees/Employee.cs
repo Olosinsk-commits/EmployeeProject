@@ -122,9 +122,6 @@ namespace Employees
 
         public virtual void SpareDetailProp1(ref string name, ref string value) { }
         public virtual void SpareDetailProp2(ref string name, ref string value) { }
-        public virtual void GetSpareProp3(ref string name, ref string value) { }
-        public virtual void GetSpareProp4(ref string name, ref string value) { }
-        public virtual void GetSpareProp5(ref string name, ref string value) { }
 
 
         #region Employee sort oders

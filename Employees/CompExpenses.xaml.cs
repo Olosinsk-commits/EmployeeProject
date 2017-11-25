@@ -23,6 +23,7 @@ namespace Employees
         #region Data members
         private bool isInsertMode = false;
         private bool isBeingEdited = false;
+        private bool isBeingActive = false;
         private Employee emp;
         #endregion
 
@@ -87,6 +88,11 @@ namespace Employees
         private void DgExp_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
         {
             isBeingEdited = true;
+        }
+
+        private void DgExp_BeingActive(object sender, DataGridBeginningEditEventArgs e)
+        {
+            isBeingActive = true;
         }
         #endregion
     }

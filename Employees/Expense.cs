@@ -22,6 +22,13 @@ namespace Employees
         #region Constructors
         public Expense() { }
 
+        public Expense(DateTime expDate, ExpenseCategory category, double amount)
+        {
+            Date = expDate;
+            Category = category;
+            Amount = amount;
+        }
+
         public Expense(DateTime expDate, ExpenseCategory category, string description, double amount)
         {
             Date = expDate;

@@ -39,6 +39,8 @@ namespace Employees
         const string filename = "Employees.dat";
         static EmployeeList empList = new EmployeeList(filename);
 
+        public bool ddDashEnabled = false;
+
         public CompHome()
         {
 
@@ -66,7 +68,7 @@ namespace Employees
 
         private void Expenses_Click(object sender, RoutedEventArgs e)
         {
-            // Show Employee details if one selected
+            // Show Expenses details if button selected
             if (dgEmps.SelectedIndex >= 0)
             {
                 this.NavigationService.Navigate(new CompExpenses(this.dgEmps.SelectedItem));
@@ -75,7 +77,7 @@ namespace Employees
 
         private void AddEmployee_Click(object sender, RoutedEventArgs e)
         {
-            // Show Employee details if one selected
+            // Show add employee page if "Add Employee" button selected
             if (dgEmps.SelectedIndex >= 0)
             {
                 this.NavigationService.Navigate(new CompAddEmployee(this.dgEmps.SelectedItem));
