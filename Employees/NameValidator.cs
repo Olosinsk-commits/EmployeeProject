@@ -17,8 +17,8 @@ namespace Employees
                 return new ValidationResult(false, "value cannot be empty.");
             else
             {
-                if (value.ToString().Length > 20)
-                    return new ValidationResult(false, "Name cannot be more than 3 characters long.");
+                if (value.ToString().Length > 5)
+                    return new ValidationResult(false, "Name cannot be more than 5 characters long.");
             }
             return ValidationResult.ValidResult;
         }

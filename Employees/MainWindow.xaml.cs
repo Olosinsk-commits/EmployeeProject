@@ -20,6 +20,7 @@ namespace Employees
     /// </summary>
     public partial class MainWindow : NavigationWindow
     {
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,5 +32,6 @@ namespace Employees
             string filename = "Employees.dat";
             EmployeeList.SaveEmployeesAsBinary(filename, CompHome.empList);
         }
+
     }
 }

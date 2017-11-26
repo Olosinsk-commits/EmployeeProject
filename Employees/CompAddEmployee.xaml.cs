@@ -59,7 +59,10 @@ namespace Employees
 
         private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            
+            string filename = "Employees.dat";
+            EmployeeList.SaveEmployeesAsBinary(filename, CompHome.empList);
+            MessageBox.Show("New employee added!");
+
         }
 
         private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs e)
