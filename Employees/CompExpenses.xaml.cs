@@ -47,7 +47,6 @@ namespace Employees
                 // Bind data grid to Employee expenses
                 dgExpenses.ItemsSource = new ObservableCollection<Expense>(emp.Expenses);
 
-
             }
         }
 
@@ -79,6 +78,7 @@ namespace Employees
                     {
                         Expense expense = row as Expense;
                         emp.Expenses.Remove(expense);
+                       
                     }
                 }
             }
@@ -94,21 +94,5 @@ namespace Employees
             isBeingEdited = true;
         }
         #endregion
-
-        //private void dgExpenses_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        //{
-        //    Expense exp = e.Row.DataContext as Expense;
-        //    if (e.Row.Item != null)
-
-        //    {
-        //        Expense expense = new Expense();
-        //        {
-        //            expense.Date = exp.Date;
-        //            expense.Category = exp.Category;
-        //            expense.Amount = exp.Amount;
-        //            emp.Expenses.Add(expense);
-        //        }
-        //    }
-        //}
     }
 }

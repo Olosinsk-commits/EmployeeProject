@@ -17,40 +17,47 @@ using System.ComponentModel;
 
 namespace Employees
 {
+    [Serializable]
+    public enum Role { Manager, Executive, Engineer, SalesPerson, SupportPerson, PTSalesPerson }
 
     [Serializable]
     public partial class CompAddEmployee : Page
     {
         public CompAddEmployee()
         {
+            DataContext = this;
             InitializeComponent();
         }
 
+        //public Employee emp = new Employee();
 
+        //public string PersonaFirstName;
+        public Role Role { get; set; }
         public string PersonaFirstName { get ; set; }
         public string PersonaLastName { get; set; }
-        public string PersonaRole { get; set; }
         public string PersonaDOB { get; set; }
+        public string PersonaSSN { get; set; }
 
         public CompAddEmployee(Object data) : this()
         {
-            this.DataContext = data;
+            
+            //this.DataContext = data;
 
-            if (data is Employee)
-            {
+            //if (data is Employee)
+            //{
 
-                Employee emp = (Employee)data;
-                string name1 = "";
-                string value1 = "";
-                string name2 = "";
-                string value2 = "";
+            //    Employee emp = (Employee)data;
+            //    string name1 = "";
+            //    string value1 = "";
+            //    string name2 = "";
+            //    string value2 = "";
 
-                emp.SpareDetailProp1(ref name1, ref value1);
-                emp.SpareDetailProp2(ref name2, ref value2);
+            //    emp.SpareDetailProp1(ref name1, ref value1);
+            //    emp.SpareDetailProp2(ref name2, ref value2);
 
-                SpareProp1Name.Content = name1;
-                SpareProp2Name.Content = name2;
-            }
+            //    SpareProp1Name.Content = name1;
+            //    SpareProp2Name.Content = name2;
+            //}
             //public int Age { get; set; }
             //public string Phone { get; set; }
 

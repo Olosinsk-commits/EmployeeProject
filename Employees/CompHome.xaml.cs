@@ -89,11 +89,7 @@ namespace Employees
 
         private void AddEmployee_Click(object sender, RoutedEventArgs e)
         {
-            // Show add employee page if "Add Employee" button selected
-            if (dgEmps.SelectedIndex >= 0)
-            {
                 this.NavigationService.Navigate(new CompAddEmployee(this.dgEmps.SelectedItem));
-            }
         }
 
         // Handle changes to Employee type radio buttons

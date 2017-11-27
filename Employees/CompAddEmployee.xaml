@@ -63,7 +63,7 @@
             <Label Name="SpareProp2Name" Content="Spare2" Grid.Column="0" Grid.Row="8" Style="{StaticResource labels}" />
 
 
-            <TextBox Name="textBox1" Style="{StaticResource textBox}"
+            <TextBox Name="textBox1" Style="{StaticResource textBox}" 
                  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="1" >
                 <TextBox.Text>
                     <Binding Path="PersonaFirstName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
@@ -85,10 +85,12 @@
                 </TextBox.Text>
             </TextBox>
 
+            
+            
             <TextBox  Name="textBox3" Style="{StaticResource textBox}"
                  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="3">
                 <TextBox.Text>
-                    <Binding Path="PersonaRole" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                    <Binding Path="Role" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
                         <Binding.ValidationRules>
                             <local:NameValidator></local:NameValidator>
                         </Binding.ValidationRules>
@@ -110,9 +112,9 @@
             <TextBox  Name="textBox5"  Style="{StaticResource textBox}"
                  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="5">
                 <TextBox.Text>
-                    <Binding Path="PersonaLastName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                    <Binding Path="PersonaSSN" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
                         <Binding.ValidationRules>
-                            <local:NameValidator></local:NameValidator>
+                            <local:SNNValidator></local:SNNValidator>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>

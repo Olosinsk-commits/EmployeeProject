@@ -8,19 +8,21 @@ using System.Windows.Controls;
 
 namespace Employees
 {
-    [Serializable]
-    public class NameValidator : ValidationRule
+    class SNNValidator : ValidationRule
     {
+
+        private string _snn = @"(^\d{3}-?\d{2}-?\d{4}$|^XXX-XX-XXXX$)";
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
         {
-            if (value == null || (value is String && String.IsNullOrWhiteSpace((String)value)))
+            if (value == null)
                 return new ValidationResult(false, "value cannot be empty.");
             else
             {
-                if (value.ToString().Length >3)
-                    return new ValidationResult(false, "Name cannot be more than 10 characters long.");
+                if (!Regex.IsMatch(value.ToString(), _snn))
+                    return new ValidationResult(false, "Please, enter 123-45-6789 OR XXX-XX-XXXX.");
             }
             return ValidationResult.ValidResult;
+
         }
     }
 }
