@@ -60,6 +60,19 @@ namespace Employees
             dgEmps.ItemsSource = empList;
         }
 
+        public CompHome(EmployeeList emps) : this()
+        {
+            empList = emps;
+
+            // Select the All radio button
+            this.employeeTypeRadioButtons.SelectedIndex = 0;
+
+            // Set event handler for radio button changes
+            this.employeeTypeRadioButtons.SelectionChanged += new SelectionChangedEventHandler(employeeTypeRadioButtons_SelectionChanged);
+
+            // Fill the Employees data grid
+            dgEmps.ItemsSource = empList;
+        }
 
         private void DgEmps_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
