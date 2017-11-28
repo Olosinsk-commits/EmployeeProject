@@ -24,9 +24,22 @@ namespace Employees
         #endregion
         public override string Role { get { return base.Role; } }
 
-        public override void SpareDetailProp1(ref string name, ref string value)
+        private static string prop1Name = "Degree:";
+
+        private static object prop1DefaultValue = DegreeName.BS;
+
+        // Add Employee spare props
+        public static string SpareAddProp1Name() { return prop1Name; }
+        public static object SpareAddProp1DefaultValue() { return prop1DefaultValue; }
+
+        public override object SpareAddProp1Convert(object obj)
         {
-            name = "Degree:";
+            return base.SpareAddProp1Convert(obj);
+        }
+
+        public override void GetSpareProp1(ref string name, ref string value)
+        {
+            name = prop1Name;
             value = HighestDegree.ToString();
         }
     }

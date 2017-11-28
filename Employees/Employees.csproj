@@ -67,7 +67,6 @@
     <Compile Include="NameValidator.cs" />
     <Compile Include="PTSalesPerson.cs" />
     <Compile Include="SalesPerson.cs" />
-    <Compile Include="SNNValidator.cs" />
     <Compile Include="SupportPerson.cs" />
     <Page Include="CompAddEmployee.xaml">
       <Generator>MSBuild:Compile</Generator>

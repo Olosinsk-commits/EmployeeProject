@@ -17,6 +17,23 @@
             <Setter Property="Opacity" Value="0.5" />
         </Style>
 
+        <!-- Combo Box style -->
+        <Style x:Key="comboBoxStyle" TargetType="{x:Type ComboBox}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Width" Value="120" />
+        </Style>
+
+        <!-- TextBox style -->
+        <Style x:Key="textBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Width" Value="120" />
+        </Style>
 
         <!-- labels text style -->
         <Style x:Key="labels">

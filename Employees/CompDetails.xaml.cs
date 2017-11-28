@@ -37,8 +37,8 @@ namespace Employees
                 string name2 = "";
                 string value2 = "";
 
-                emp.SpareDetailProp1(ref name1, ref value1);
-                emp.SpareDetailProp2(ref name2, ref value2);
+                emp.GetSpareProp1(ref name1, ref value1);
+                emp.GetSpareProp2(ref name2, ref value2);
 
                 SpareProp1Name.Content = name1;
                 SpareProp1Value.Content = value1;

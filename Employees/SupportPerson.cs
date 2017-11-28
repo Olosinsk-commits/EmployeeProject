@@ -42,10 +42,22 @@ namespace Employees
             base.DisplayStats();
             Console.WriteLine("Shift: {0}", Shift);
         }
+        private static string prop1Name = "Shift:";
 
-        public override void SpareDetailProp1(ref string name, ref string value)
+        private static object prop1DefaultValue = "One";
+
+        // Add Employee spare props
+        public static string SpareAddProp1Name() { return prop1Name; }
+        public static object SpareAddProp1DefaultValue() { return prop1DefaultValue; }
+
+        public override object SpareAddProp1Convert(object obj)
         {
-            name = "Shift:";
+            return base.SpareAddProp1Convert(obj);
+        }
+
+        public override void GetSpareProp1(ref string name, ref string value)
+        {
+            name = prop1Name;
             value = Shift.ToString();
         }
     }

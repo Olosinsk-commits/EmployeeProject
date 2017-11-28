@@ -67,9 +67,22 @@ namespace Employees
             Console.WriteLine("Sales Number: {0:N0}", SalesNumber);
         }
 
-        public override void SpareDetailProp1(ref string name, ref string value)
+        private static string prop1Name = "Sales Number:";
+
+        private static object prop1DefaultValue =0;
+
+        // Add Employee spare props
+        public static string SpareAddProp1Name() { return prop1Name; }
+        public static object SpareAddProp1DefaultValue() { return prop1DefaultValue; }
+
+        public override object SpareAddProp1Convert(object obj)
         {
-            name = "Sales Number:";
+            return base.SpareAddProp1Convert(obj);
+        }
+
+        public override void GetSpareProp1(ref string name, ref string value)
+        {
+            name = prop1Name;
             value = SalesNumber.ToString();
         }
     }

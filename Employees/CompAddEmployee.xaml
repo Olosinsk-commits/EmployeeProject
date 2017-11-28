@@ -18,145 +18,73 @@
         <!-- Put watermark in top left corner of outer grid -->
         <Image Style="{StaticResource WatermarkImage}" Height="156" Grid.RowSpan="3" Width="181" Grid.ColumnSpan="1" />
 
-        <!-- Employee details in second column of outer grid -->
-        <Grid Grid.ColumnSpan="5" Margin="130,0,0,0">
+        <!-- Employee fields in second column of outer grid -->
+        <Grid Grid.Column="1" Margin="0,6,0,-6" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="220.4" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <!-- Employee Details title in first column, first row -->
-            <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource headerTextStyle}" Content="Employee Details" Height="30" Margin="0,0,0,0"  />
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource headerTextStyle}" Content="Add Employee" />
 
             <!-- Field name/value labels in remaining rows -->
+            <Label Content="First Name:" Grid.Column="0" Grid.Row="1" Style="{StaticResource labelStyle}" />
+            <TextBox Name="FirstNameTextBox" Grid.Column="1" Grid.Row="1" Style="{StaticResource textBoxStyle}"
+                     Text="{Binding FirstName}" MaxLength="15" />
 
-            <!--<Label Content="First Name:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Name="label1" VerticalAlignment="Top" Width="72" Grid.RowSpan="1" Height="28" Margin="0,0,0,0" />
-            <Label Content="Last Name:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2" Name="label2" VerticalAlignment="Top" Width="72" Grid.RowSpan="2" Height="28" Margin="0,0,0,0" />
-            <Label Content="Role:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="3" Name="label3" VerticalAlignment="Top" Width="72" Grid.RowSpan="3" Height="28" Margin="0,0,0,0" />-->
+            <Label Content="Last Name:" Grid.Column="0" Grid.Row="2" Style="{StaticResource labelStyle}" />
+            <TextBox Name="LastNameTextBox" Grid.Column="1" Grid.Row="2" Style="{StaticResource textBoxStyle}" 
+                     Text="{Binding LastName}" MaxLength="15" />
 
-            <!--<Label Content="First Name:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Name="label1" VerticalAlignment="Top" Width="72" Height="25" Margin="0,0,0,0" />-->
+            <Label Content="Role:" Grid.Column="0" Grid.Row="3" Style="{StaticResource labelStyle}" />
+            <ComboBox Name="RoleComboBox" Grid.Column="1" Grid.Row="3" Style="{StaticResource comboBoxStyle}"
+                      Text="Select Role" ItemsSource="{Binding EmpTypeNames}" SelectionChanged="Role_SelectionChanged" />
 
-            <Label Content="First Name:" Style="{StaticResource labels}" Name="label1" Grid.Column="0" Grid.Row="1"/>
+            <Label Content="DOB:" Grid.Column="0" Grid.Row="4" Style="{StaticResource labelStyle}" />
+            <TextBox Name="DOBDateBox" Grid.Column="1" Grid.Row="4" Style="{StaticResource textBoxStyle}" 
+                     Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
+                     Text="{Binding DOB, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
 
-            <Label Content="Last Name:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2" Name="label2" Style="{StaticResource labels}"  />
-            <Label Content="Role:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="3" Name="label3" Style="{StaticResource labels}" />
-            <Label Content="DOB:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="4" Name="label4" Style="{StaticResource labels}" />
-            <Label Content="SSN:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="5" Name="label5" Style="{StaticResource labels}" />
-            <Label Content="Pay:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="6" Name="label6" Style="{StaticResource labels}" />
+            <Label Content="SSN:" Grid.Column="0" Grid.Row="5" Style="{StaticResource labelStyle}" />
+            <TextBox Name="SSN" Grid.Column="1" Grid.Row="5" Style="{StaticResource textBoxStyle}" 
+                     Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
+                     Text="{Binding SNN, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
 
-            <Label Name="SpareProp1Name"  Content="Spare1" Grid.Column="0" Grid.Row="7" Style="{StaticResource labels}"/>
+            <Label Content="Pay:" Grid.Column="0" Grid.Row="6" Style="{StaticResource labelStyle}" />
+            <TextBox Name="Pay" Grid.Column="1" Grid.Row="6" Style="{StaticResource textBoxStyle}" 
+                     Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
+                     Text="{Binding Pay, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
 
-            <Label Name="SpareProp2Name" Content="Spare2" Grid.Column="0" Grid.Row="8" Style="{StaticResource labels}" />
+            <Label Name="SpareProp1Name" Grid.Column="0" Grid.Row="7" Style="{StaticResource labelStyle}" />
+            <TextBox Name="SpareProp1Value" Grid.Column="1" Grid.Row="7" Style="{StaticResource textBoxStyle}"
+                     Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
+                     Text="{Binding Spare1Value, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}" />
+            <ComboBox Name="SpareProp1Combo" Grid.Column="1" Grid.Row="7" Style="{StaticResource comboBoxStyle}" />
 
 
-            <TextBox Name="textBox1" Style="{StaticResource textBox}" 
-                 Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="1" >
-                <TextBox.Text>
-                    <Binding Path="PersonaFirstName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
-                        <Binding.ValidationRules>
-                            <local:NameValidator></local:NameValidator>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
+            <Label Name="SpareProp2Name" Grid.Column="0" Grid.Row="8" Style="{StaticResource labelStyle}" />
+            <TextBox Name="SpareProp2Value" Grid.Column="1" Grid.Row="8" Style="{StaticResource textBoxStyle}"
+                     Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
+                     Text="{Binding Spare2Value, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}" />
+            <ComboBox Name="SpareProp2Combo" Grid.Column="1" Grid.Row="8" Style="{StaticResource comboBoxStyle}" />
 
-            <TextBox  Name="textBox2" Style="{StaticResource textBox}"
-                 Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="2">
-                <TextBox.Text>
-                    <Binding Path="PersonaLastName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
-                        <Binding.ValidationRules>
-                            <local:NameValidator></local:NameValidator>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-
-            
-            
-            <TextBox  Name="textBox3" Style="{StaticResource textBox}"
-                 Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="3">
-                <TextBox.Text>
-                    <Binding Path="Role" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
-                        <Binding.ValidationRules>
-                            <local:NameValidator></local:NameValidator>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-
-            <TextBox  Name="textBox4" Style="{StaticResource textBox}"
-                 Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="4">
-                <TextBox.Text>
-                    <Binding Path="PersonaDOB" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
-                        <Binding.ValidationRules>
-                            <local:NameValidator></local:NameValidator>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-
-            <TextBox  Name="textBox5"  Style="{StaticResource textBox}"
-                 Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="5">
-                <TextBox.Text>
-                    <Binding Path="PersonaSSN" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
-                        <Binding.ValidationRules>
-                            <local:SNNValidator></local:SNNValidator>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-
-            <TextBox  Name="textBox6" Style="{StaticResource textBox}"
-                 Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="6">
-                <TextBox.Text>
-                    <Binding Path="PersonaLastName" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
-                        <Binding.ValidationRules>
-                            <local:NameValidator></local:NameValidator>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-
-            <TextBox  Name="textBox7" Style="{StaticResource textBox}"
-                 Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  Grid.Row="7">
-                <TextBox.Text>
-                    <Binding Path="Spare1" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
-                        <Binding.ValidationRules>
-                            <local:NameValidator></local:NameValidator>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-
-            <TextBox  Name="textBox8" Style="{StaticResource textBox}"
-                 Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" Grid.Row="8">
-                <TextBox.Text>
-                    <Binding Path="Spare2" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
-                        <Binding.ValidationRules>
-                            <local:NameValidator></local:NameValidator>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-
-            <Button Content="Save" Height="20" Grid.Column ="0" Grid.Row="10" Width="100" Margin="72,0,0,0" HorizontalAlignment="Center" Command="Save">
+            <Button Content="Save" Grid.Column="1" Grid.Row="9" Style="{StaticResource buttonStyle}" Height="Auto" Command="Save" >
                 <Button.CommandBindings>
                     <CommandBinding Command="Save" 
-                    Executed="Save_Executed" CanExecute="Save_CanExecute"/>
+                            Executed="Save_Executed" CanExecute="Save_CanExecute"/>
                 </Button.CommandBindings>
             </Button>
 

@@ -25,7 +25,7 @@ namespace Employees
     {
         public ExecTitle Title { get; set; } = ExecTitle.VP;
 
-
+        private static object prop1DefaultValue = 1000;
         public Executive() : base()
         {
             empBenefits = new GoldBenefitPackage();
@@ -43,17 +43,67 @@ namespace Employees
         }
 
         public override string Role { get { return base.Role + ", " + Title; } }
-        public override void SpareDetailProp1(ref string name, ref string value)
+
+        // Add Employee spare props
+        public new static string SpareAddProp1Name() { return prop1Name; }
+        public new static object SpareAddProp1DefaultValue() { return prop1DefaultValue; }
+
+        public override object SpareAddProp1Convert(object obj)
         {
-            name = "Stock Options:";
+            return base.SpareAddProp1Convert(obj);
+        }
+
+        // Return error message if there is error on else return empty or null string
+        public new static string SpareAddProp1Valid(object obj)
+        {
+            if (obj is string)
+            {
+                string s = (string)obj;
+                int value;
+
+                if (int.TryParse(s, out value) && value >= 0 && value <= 10000)
+                    return String.Empty;
+            }
+
+            return "Range is 0 to 100,000";
+        }
+
+        private static object prop2DefaultValue = " ";
+        public new static string SpareAddProp2Name() { return prop2Name; }
+        public new static object SpareAddProp2DefaultValue() { return prop2DefaultValue; }
+
+        public override object SpareAddProp2Convert(object obj)
+        {
+            return base.SpareAddProp1Convert(obj);
+        }
+
+        // Return error message if there is error on else return empty or null string
+        public new static string SpareAddProp2Valid(object obj)
+        {
+            if (obj is string)
+            {
+                string s = (string)obj;
+                return String.Empty;
+            }
+
+            return "Cannot add";
+        }
+
+        private static string prop1Name = "Stock Options:";
+        private static string prop2Name = "Reports:";
+        // Details spare prop
+        public override void GetSpareProp1(ref string name, ref string value)
+        {
+            name = prop1Name;
             value = StockOptions.ToString();
         }
 
-        public override void SpareDetailProp2(ref string name, ref string value)
+        public override void GetSpareProp2(ref string name, ref string value)
         {
-            name = "Reports:";
+            name = prop2Name;
             value = reports();
         }
+
 
         private string reports()
         {

@@ -89,7 +89,7 @@ namespace Employees
 
         private void AddEmployee_Click(object sender, RoutedEventArgs e)
         {
-                this.NavigationService.Navigate(new CompAddEmployee(this.dgEmps.SelectedItem));
+            this.NavigationService.Navigate(new CompAddEmployee(this, empList));
         }
 
         // Handle changes to Employee type radio buttons
@@ -100,7 +100,7 @@ namespace Employees
         }
 
         // Filter Employee list according to radio button setting
-        void RefreshEmployeeList()
+       public void RefreshEmployeeList()
         {
             // Apply the selection
             switch (this.employeeTypeRadioButtons.SelectedIndex)
