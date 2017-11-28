@@ -40,6 +40,8 @@ namespace Employees
         public const int MaxReports = 5;
         private static object prop1DefaultValue = 500;
         private List<Employee> _reports = new List<Employee>();
+        private static string prop1Name = "Stock Options:";
+        private static string prop2Name = "Reports:";
 
         // Stock options unique to Managers
         public int StockOptions { get; set; }
@@ -47,9 +49,18 @@ namespace Employees
         public static string SpareAddProp1Name() { return prop1Name; }
         public static object SpareAddProp1DefaultValue() { return prop1DefaultValue; }
 
-        public override object SpareAddProp1Convert(object obj)
+        public static object SpareAddProp1Convert(object obj)
         {
-            return base.SpareAddProp1Convert(obj);
+            if (obj is int) return obj;
+            else if (obj is string)
+            {
+                string s = (string)obj;
+                int value;
+
+                if (int.TryParse(s, out value)) return value;
+            }
+
+            return -1;
         }
 
         // Return error message if there is error on else return empty or null string
@@ -68,29 +79,37 @@ namespace Employees
         }
 
         #endregion
-        private static object prop2DefaultValue = " ";
-        public static string SpareAddProp2Name() { return prop2Name; }
-        public static object SpareAddProp2DefaultValue() { return prop2DefaultValue; }
+        //private static object prop2DefaultValue = " ";
+        //public static string SpareAddProp2Name() { return prop2Name; }
+        //public static object SpareAddProp2DefaultValue() { return prop2DefaultValue; }
 
-        public override object SpareAddProp2Convert(object obj)
-        {
-            return base.SpareAddProp1Convert(obj);
-        }
 
-        // Return error message if there is error on else return empty or null string
-        public static string SpareAddProp2Valid(object obj)
-        {
-            if (obj is string)
-            {
-                string s = (string)obj;
-                return String.Empty;
-            }
+        //public static object SpareAddProp2Convert(object obj)
+        //{
+        //    if (obj is int) return obj;
+        //    else if (obj is string)
+        //    {
+        //        string s = (string)obj;
+        //        int value;
 
-            return "Cannot add";
-        }
+        //        if (int.TryParse(s, out value)) return value;
+        //    }
 
-        private static string prop1Name = "Stock Options:";
-        private static string prop2Name = "Reports:";
+        //    return -1;
+        //}
+
+        //// Return error message if there is error on else return empty or null string
+        //public static string SpareAddProp2Valid(object obj)
+        //{
+        //    if (obj is string)
+        //    {
+        //        string s = (string)obj;
+        //        return String.Empty;
+        //    }
+
+        //    return "Cannot add";
+        //}
+
         // Details spare prop
         public override void GetSpareProp1(ref string name, ref string value)
         {
@@ -98,11 +117,11 @@ namespace Employees
             value = StockOptions.ToString();
         }
 
-        public override void GetSpareProp2(ref string name, ref string value)
-        {
-            name = prop2Name;
-            value = reports();
-        }
+        //public override void GetSpareProp2(ref string name, ref string value)
+        //{
+        //    name = prop2Name;
+        //    value = reports();
+        //}
 
         private string reports()
         {

@@ -38,9 +38,10 @@ namespace Employees
         public new static string SpareAddProp1Name() { return prop1Name; }
         public new static object SpareAddProp1DefaultValue() { return prop1DefaultValue; }
 
-        public override object SpareAddProp1Convert(object obj)
+        public static object SpareAddProp1Convert(string obj)
         {
-            return base.SpareAddProp1Convert(obj);
+            string s = (string)obj;
+            return s;
         }
 
         public override void GetSpareProp1(ref string name, ref string value)

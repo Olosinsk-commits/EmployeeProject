@@ -32,9 +32,10 @@ namespace Employees
         public static string SpareAddProp1Name() { return prop1Name; }
         public static object SpareAddProp1DefaultValue() { return prop1DefaultValue; }
 
-        public override object SpareAddProp1Convert(object obj)
+        public static object SpareAddProp1Convert(string obj)
         {
-            return base.SpareAddProp1Convert(obj);
+            DegreeName degr = (DegreeName)Enum.Parse(typeof(DegreeName), obj);
+            return degr;
         }
 
         public override void GetSpareProp1(ref string name, ref string value)

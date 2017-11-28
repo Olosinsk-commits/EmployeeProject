@@ -126,33 +126,8 @@ namespace Employees
         public virtual void GetSpareProp1(ref string name, ref string value) { }
         public virtual void GetSpareProp2(ref string name, ref string value) { }
 
-        public virtual object SpareAddProp1Convert(object obj)
-        {
-            if (obj is int) return obj;
-            else if (obj is string)
-            {
-                string s = (string)obj;
-                int value;
 
-                if (int.TryParse(s, out value)) return value;
-            }
 
-            return -1;
-        }
-
-        public virtual object SpareAddProp2Convert(object obj)
-        {
-            if (obj is int) return obj;
-            else if (obj is string)
-            {
-                string s = (string)obj;
-                int value;
-
-                if (int.TryParse(s, out value)) return value;
-            }
-
-            return -1;
-        }
         #region Employee sort oders
         // Sort employees by name.
         [Serializable]
