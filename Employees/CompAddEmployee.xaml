@@ -43,11 +43,13 @@
             <!-- Field name/value labels in remaining rows -->
             <Label Content="First Name:" Grid.Column="0" Grid.Row="1" Style="{StaticResource labelStyle}" />
             <TextBox Name="FirstNameTextBox" Grid.Column="1" Grid.Row="1" Style="{StaticResource textBoxStyle}"
-                     Text="{Binding FirstName}" MaxLength="15" />
+                     Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
+                     Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
 
             <Label Content="Last Name:" Grid.Column="0" Grid.Row="2" Style="{StaticResource labelStyle}" />
             <TextBox Name="LastNameTextBox" Grid.Column="1" Grid.Row="2" Style="{StaticResource textBoxStyle}" 
-                     Text="{Binding LastName}" MaxLength="15" />
+                     Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
+                     Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
 
             <Label Content="Role:" Grid.Column="0" Grid.Row="3" Style="{StaticResource labelStyle}" />
             <ComboBox Name="RoleComboBox" Grid.Column="1" Grid.Row="3" Style="{StaticResource comboBoxStyle}"
@@ -59,14 +61,14 @@
                      Text="{Binding DOB, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
 
             <Label Content="SSN:" Grid.Column="0" Grid.Row="5" Style="{StaticResource labelStyle}" />
-            <TextBox Name="SSN" Grid.Column="1" Grid.Row="5" Style="{StaticResource textBoxStyle}" 
+            <TextBox Name="SSNCombobox" Grid.Column="1" Grid.Row="5" Style="{StaticResource textBoxStyle}" 
                      Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
-                     Text="{Binding SNN, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
+                     Text="{Binding SSN, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
 
             <Label Content="Pay:" Grid.Column="0" Grid.Row="6" Style="{StaticResource labelStyle}" />
-            <TextBox Name="Pay" Grid.Column="1" Grid.Row="6" Style="{StaticResource textBoxStyle}" 
+            <TextBox Name="PayCombobox" Grid.Column="1" Grid.Row="6" Style="{StaticResource textBoxStyle}" 
                      Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
-                     Text="{Binding Pay, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
+                     Text="{Binding PersonaPay, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
 
             <Label Name="SpareProp1Name" Grid.Column="0" Grid.Row="7" Style="{StaticResource labelStyle}" />
             <TextBox Name="SpareProp1Value" Grid.Column="1" Grid.Row="7" Style="{StaticResource textBoxStyle}"

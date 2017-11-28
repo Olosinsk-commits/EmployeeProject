@@ -31,16 +31,26 @@ namespace Employees
         public List<string> EmpTypeNames { get; } = new List<string>();
 
         // Employee name fields are validated in XAML
-        public string FirstName { get; set; }
-
-
-        public string LastName { get; set; }
-
-        // Remainder of fields are validated with OnPropertyChanged event
+        private string PersonaFirstName = "";
+        private string PersonaLastName = "";
         private DateTime _DOB = DateTime.Today.AddYears(-21);
+        Regex _SSNTemplate = new Regex(@"^\d{3}-?\d{2}-?\d{4}$|^XXX-XX-XXXX$");
+        private string _SSN = "XXX-XX-XXXX";
+        private string _spare1Value = "";
+        private string _spare2Value = "";
+        private float _Pay=1000;
 
-        Regex _SNNTemplate = new Regex(@"^\d{3}-?\d{2}-?\d{4}$|^XXX-XX-XXXX$");
-        private string _SNN = "XXX-XX-XXXX";
+        public string FirstName
+        {
+            get { return PersonaFirstName; }
+            set { PersonaFirstName = value; OnPropertyChanged("FirstName"); }
+        }
+
+        public string LastName
+        {
+            get { return PersonaLastName; }
+            set { PersonaLastName = value; OnPropertyChanged("LastName"); }
+        }
 
         public DateTime DOB
         {
@@ -48,21 +58,24 @@ namespace Employees
             set { _DOB = value; OnPropertyChanged("DOB"); }
         }
 
-        public string SNN
+        public string SSN
         {
-            get { return _SNN; }
-            set { _SNN = value; OnPropertyChanged("SNN"); }
+            get { return _SSN; }
+            set { _SSN = value; OnPropertyChanged("SSN"); }
         }
 
-        private string _spare1Value = "";
+        public float PersonaPay
+        {
+            get { return _Pay; }
+            set { _Pay = value; OnPropertyChanged("PersonaPay"); }
+        }
+
         public string Spare1Value
         {
             get { return _spare1Value; }
             set { _spare1Value = value; OnPropertyChanged("Spare1Value"); }
         }
 
-
-        private string _spare2Value = "";
         public string Spare2Value
         {
             get { return _spare2Value; }
@@ -87,10 +100,18 @@ namespace Employees
             // Return error message if there is error on else return empty or null string
             string validationMessage = string.Empty;
 
-
-
             switch (propertyName)
             {
+                case "FirstName":
+                    if (PersonaFirstName.Length > 10)
+                        validationMessage = "Name cannot be more than 10 characters long.";
+                    break;
+
+                case "LastName":
+                    if (PersonaLastName.Length > 12)
+                        validationMessage = "Name cannot be more than 12 characters long.";
+                    break;
+
                 case "DOB":
                     if (_DOB > DateTime.Now.AddYears(-21))
                         validationMessage = "Must be 21 or older";
@@ -98,9 +119,14 @@ namespace Employees
                         validationMessage = "Must be 65 or younger";
                     break;
 
-                case "SNN":
-                    if ((_SNNTemplate.IsMatch(_SNN))==false)
+                case "SSN":
+                    if ((_SSNTemplate.IsMatch(_SSN)) == false)
                         validationMessage = "Please, use format XXX-XX-XXXX.";
+                    break;
+
+                case "PersonaPay":
+                    if (_Pay < 1000||_Pay > 10000)
+                        validationMessage = "Range is 1000 to 10,000";
                     break;
 
                 case "Spare1Value":
@@ -112,12 +138,6 @@ namespace Employees
                                                           SpareProp2Value, SpareProp2Combo);
                     break;
             }
-
-
-
-
-
-
             return validationMessage;
         }
         #endregion
@@ -172,7 +192,7 @@ namespace Employees
         // Display all spare properties
         private void DisplayAllSpareProps1()
         {
-            DisplaySpareProp1("SpareAddProp1",  SpareProp1Name, SpareProp1Value, SpareProp1Combo);
+            DisplaySpareProp1("SpareAddProp1", SpareProp1Name, SpareProp1Value, SpareProp1Combo);
         }
 
         // Display the passed property
@@ -268,7 +288,8 @@ namespace Employees
         private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = !String.IsNullOrWhiteSpace(FirstName) && !String.IsNullOrWhiteSpace(LastName) &&
-                !Validation.GetHasError(DOBDateBox) && !Validation.GetHasError(SpareProp1Value) && !Validation.GetHasError(SpareProp2Value);
+                !Validation.GetHasError(DOBDateBox) && !Validation.GetHasError(SpareProp1Value) && !Validation.GetHasError(SpareProp2Value)
+                 &&!Validation.GetHasError(SSNCombobox) &&!Validation.GetHasError(PayCombobox) ;
         }
 
         // Return error message if there is error on else return empty or null string
@@ -300,7 +321,8 @@ namespace Employees
         private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Type t = empTypes[RoleComboBox.SelectedIndex];
-            ArrayList args = new ArrayList() { FirstName, LastName, DOB };
+
+            ArrayList args = new ArrayList() { FirstName, LastName, DOB, PersonaPay, SSN };
 
             if (SpareProp1Name.IsVisible) AddSpareProp(t, "SpareAddProp1", SpareProp1Value, SpareProp1Combo, args);
             if (SpareProp2Name.IsVisible) AddSpareProp(t, "SpareAddProp2", SpareProp2Value, SpareProp2Combo, args);
@@ -319,8 +341,10 @@ namespace Employees
                 }
 
                 // Null out name fields and go back to home page
-                FirstName = "";
-                LastName = "";
+                PersonaFirstName = "";
+                PersonaLastName = "";
+                _Pay = 0;
+                _SSN="XXX-XX-XXXX"; ;
                 compHome.RefreshEmployeeList();
                 this.NavigationService.GoBack();
             }

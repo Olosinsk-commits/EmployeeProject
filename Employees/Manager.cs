@@ -64,7 +64,7 @@ namespace Employees
                     return String.Empty;
             }
 
-            return "Range is 0 to 100,000";
+            return "Range is 0 to 10,000";
         }
 
         #endregion
