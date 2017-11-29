@@ -34,8 +34,12 @@ namespace Employees
 
         public static object SpareAddProp1Convert(string obj)
         {
-            DegreeName degr = (DegreeName)Enum.Parse(typeof(DegreeName), obj);
-            return degr;
+            DegreeName degr;
+            if (Enum.TryParse(obj, true, out degr))
+            {
+                return degr;
+            }
+            return -1;
         }
 
         public override void GetSpareProp1(ref string name, ref string value)
@@ -43,5 +47,16 @@ namespace Employees
             name = prop1Name;
             value = HighestDegree.ToString();
         }
+
+        //public static string SpareAddProp1Valid(string obj)
+        //{
+        //    DegreeName degr;
+        //    if (!Enum.TryParse(obj, false, out degr))
+        //    {
+        //        return String.Empty;
+        //    }
+        //    return "Incorect Degree";
+        //}
+
     }
 }

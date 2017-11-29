@@ -46,9 +46,10 @@ namespace Employees
 
         // Add Employee spare props
         public new static string SpareAddProp1Name() { return prop1Name; }
+
         public new static object SpareAddProp1DefaultValue() { return prop1DefaultValue; }
 
-        public new static object SpareAddProp1Convert(object obj)
+        public static object SpareAddProp2Convert(object obj)
         {
             if (obj is int) return obj;
             else if (obj is string)

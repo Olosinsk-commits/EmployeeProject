@@ -324,6 +324,7 @@ namespace Employees
 
             ArrayList args = new ArrayList() { FirstName, LastName, DOB, PersonaPay, SSN };
 
+            string [] =new 
             if (SpareProp1Name.IsVisible) AddSpareProp(t, "SpareAddProp1", SpareProp1Value, SpareProp1Combo, args);
             if (SpareProp2Name.IsVisible) AddSpareProp(t, "SpareAddProp2", SpareProp2Value, SpareProp2Combo, args);
 
