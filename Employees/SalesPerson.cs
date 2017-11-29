@@ -34,6 +34,13 @@ namespace Employees
             // This belongs with us!
             SalesNumber = numbOfSales;
         }
+
+
+        public SalesPerson(string firstName, string lastName, DateTime age,
+                     float currPay, string ssn)
+         : base(firstName, lastName, age, currPay, ssn)
+        {
+        }
         #endregion
 
         public int SalesNumber { get; set; }

@@ -77,11 +77,11 @@
             <ComboBox Name="SpareProp1Combo" Grid.Column="1" Grid.Row="7" Style="{StaticResource comboBoxStyle}" />
 
 
-            <Label Name="SpareProp2Name" Grid.Column="0" Grid.Row="8" Style="{StaticResource labelStyle}" />
+            <!--<Label Name="SpareProp2Name" Grid.Column="0" Grid.Row="8" Style="{StaticResource labelStyle}" />
             <TextBox Name="SpareProp2Value" Grid.Column="1" Grid.Row="8" Style="{StaticResource textBoxStyle}"
                      Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
                      Text="{Binding Spare2Value, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}" />
-            <ComboBox Name="SpareProp2Combo" Grid.Column="1" Grid.Row="8" Style="{StaticResource comboBoxStyle}" />
+            <ComboBox Name="SpareProp2Combo" Grid.Column="1" Grid.Row="8" Style="{StaticResource comboBoxStyle}" />-->
 
             <Button Content="Save" Grid.Column="1" Grid.Row="9" Style="{StaticResource buttonStyle}" Height="Auto" Command="Save" >
                 <Button.CommandBindings>

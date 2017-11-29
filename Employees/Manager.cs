@@ -33,6 +33,12 @@ namespace Employees
             // This property is defined by the Manager class.
             StockOptions = numbOfOpts;
         }
+
+        public Manager(string firstName, string lastName, DateTime age, float currPay,
+         string ssn)
+          : base(firstName, lastName, age, currPay, ssn)
+        {
+        }
         #endregion
 
         #region Constants, data members and properties
@@ -41,7 +47,7 @@ namespace Employees
         private static object prop1DefaultValue = 500;
         private List<Employee> _reports = new List<Employee>();
         private static string prop1Name = "Stock Options:";
-        private static string prop2Name = "Reports:";
+        //private static string prop2Name = "Reports:";
 
         // Stock options unique to Managers
         public int StockOptions { get; set; }
@@ -79,36 +85,14 @@ namespace Employees
         }
 
         #endregion
-        //private static object prop2DefaultValue = " ";
-        //public static string SpareAddProp2Name() { return prop2Name; }
-        //public static object SpareAddProp2DefaultValue() { return prop2DefaultValue; }
+        private static string prop2Name = "Reports:";
+        public override void GetSpareProp2(ref string name, ref string value)
+        {
+            name = prop2Name;
+            value = reports();
+        }
 
 
-        //public static object SpareAddProp2Convert(object obj)
-        //{
-        //    if (obj is int) return obj;
-        //    else if (obj is string)
-        //    {
-        //        string s = (string)obj;
-        //        int value;
-
-        //        if (int.TryParse(s, out value)) return value;
-        //    }
-
-        //    return -1;
-        //}
-
-        //// Return error message if there is error on else return empty or null string
-        //public static string SpareAddProp2Valid(object obj)
-        //{
-        //    if (obj is string)
-        //    {
-        //        string s = (string)obj;
-        //        return String.Empty;
-        //    }
-
-        //    return "Cannot add";
-        //}
 
         // Details spare prop
         public override void GetSpareProp1(ref string name, ref string value)
@@ -116,12 +100,6 @@ namespace Employees
             name = prop1Name;
             value = StockOptions.ToString();
         }
-
-        //public override void GetSpareProp2(ref string name, ref string value)
-        //{
-        //    name = prop2Name;
-        //    value = reports();
-        //}
 
         private string reports()
         {

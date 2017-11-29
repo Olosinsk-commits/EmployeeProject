@@ -133,10 +133,6 @@ namespace Employees
                     validationMessage = IsValidSpareValue("SpareAddProp1", SpareProp1Name,
                                                           SpareProp1Value, SpareProp1Combo);
                     break;
-                case "Spare2Value":
-                    validationMessage = IsValidSpareValue("SpareAddProp2", SpareProp2Name,
-                                                          SpareProp2Value, SpareProp2Combo);
-                    break;
             }
             return validationMessage;
         }
@@ -186,7 +182,6 @@ namespace Employees
         private void Role_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DisplayAllSpareProps1();
-            DisplayAllSpareProps2();
         }
 
         // Display all spare properties
@@ -237,10 +232,6 @@ namespace Employees
             }
         }
 
-        private void DisplayAllSpareProps2()
-        {
-            DisplaySpareProp2("SpareAddProp2", SpareProp2Name, SpareProp2Value, SpareProp2Combo);
-        }
 
         // Display the passed property
         private void DisplaySpareProp2(string propPrefix1, Label nameLabel1, TextBox valueTxt1, ComboBox combo1)
@@ -288,7 +279,7 @@ namespace Employees
         private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = !String.IsNullOrWhiteSpace(FirstName) && !String.IsNullOrWhiteSpace(LastName) &&
-                !Validation.GetHasError(DOBDateBox) && !Validation.GetHasError(SpareProp1Value) && !Validation.GetHasError(SpareProp2Value)
+                !Validation.GetHasError(DOBDateBox) && !Validation.GetHasError(SpareProp1Value)
                  && !Validation.GetHasError(SSNCombobox) && !Validation.GetHasError(PayCombobox);
         }
 
@@ -324,9 +315,14 @@ namespace Employees
 
             ArrayList args = new ArrayList() { FirstName, LastName, DOB, PersonaPay, SSN };
 
-            string [] =new 
-            if (SpareProp1Name.IsVisible) AddSpareProp(t, "SpareAddProp1", SpareProp1Value, SpareProp1Combo, args);
-            if (SpareProp2Name.IsVisible) AddSpareProp(t, "SpareAddProp2", SpareProp2Value, SpareProp2Combo, args);
+            string[] SpareAddProp = { "SpareAddProp1", "SpareAddProp2", "SpareAddProp3", "SpareAddProp4" };
+
+            for(int i=0; i<SpareAddProp.Length; i++)
+            { if (SpareProp1Name.IsVisible) AddSpareProp(t, SpareAddProp[i], SpareProp1Value, SpareProp1Combo, args);
+            }
+
+
+            //if (SpareProp2Name.IsVisible) AddSpareProp(t, "SpareAddProp2", SpareProp2Value, SpareProp2Combo, args);
 
             object[] args1 = new object[args.Count];
             for (int i = 0; i < args.Count; i++) args1[i] = args[i];
