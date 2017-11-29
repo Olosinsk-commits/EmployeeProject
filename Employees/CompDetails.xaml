@@ -60,14 +60,17 @@
             <Label Content="SSN:" Grid.Column="0" Grid.Row="6" Style="{StaticResource labelStyle}" Margin="0" />
             <Label Content="{Binding SocialSecurityNumber}" Grid.Column="1" Grid.Row="6" Style="{StaticResource labelStyle}" Margin="0" />
 
-            <Label Content="Benefits:" Grid.Column="0" Grid.Row="7" Style="{StaticResource labelStyle}" Margin="0"/>
-            <Label Content="{Binding Benefits}" Grid.Column="1" Grid.Row="7" Style="{StaticResource labelStyle}" Margin="0" />
+            <Label Content="Pay" Grid.Column="0" Grid.Row="7" Style="{StaticResource labelStyle}" Margin="0" />
+            <Label Content="{Binding Pay}" Grid.Column="1" Grid.Row="7" Style="{StaticResource labelStyle}" Margin="0" />
 
-            <Label Name="SpareProp1Name" Content="Spare1" Grid.Column="0" Grid.Row="8" Style="{StaticResource labelStyle}" Margin="0" />
-            <Label Name="SpareProp1Value" Content="Value1" Grid.Column="1" Grid.Row="8" Style="{StaticResource labelStyle}" Margin="0"  />
+            <Label Content="Benefits:" Grid.Column="0" Grid.Row="8" Style="{StaticResource labelStyle}" Margin="0"/>
+            <Label Content="{Binding Benefits}" Grid.Column="1" Grid.Row="8" Style="{StaticResource labelStyle}" Margin="0" />
 
-            <Label Name="SpareProp2Name" Content="Spare2" Grid.Column="0" Grid.Row="9" Style="{StaticResource labelStyle}" Margin="0"  />
-            <Label Name="SpareProp2Value" Content="Value2" Grid.Column="1" Grid.Row="9" Style="{StaticResource labelStyle}" Margin="0"  />
+            <Label Name="SpareProp1Name" Content="Spare1" Grid.Column="0" Grid.Row="9" Style="{StaticResource labelStyle}" Margin="0" />
+            <Label Name="SpareProp1Value" Content="Value1" Grid.Column="1" Grid.Row="9" Style="{StaticResource labelStyle}" Margin="0"  />
+
+            <Label Name="SpareProp2Name" Content="Spare2" Grid.Column="0" Grid.Row="10" Style="{StaticResource labelStyle}" Margin="0"  />
+            <Label Name="SpareProp2Value" Content="Value2" Grid.Column="1" Grid.Row="10" Style="{StaticResource labelStyle}" Margin="0"  />
         </Grid>
     </Grid>
 </Page>

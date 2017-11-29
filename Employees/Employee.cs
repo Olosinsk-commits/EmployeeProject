@@ -22,42 +22,8 @@ using System.Text.RegularExpressions;
 namespace Employees
 {
     [Serializable]
-    public class Employee
+    abstract public partial class Employee
     {
-        public static int NamespaceLength = 10;
-
-        // Field data.
-        public string Name { get { return FirstName + " " + LastName; } }
-
-        static private int empID = 1;
-        private int eID;
-        private float currPay;
-        private DateTime empDOB;
-        private string empSSN;
-        DateTime today = DateTime.Now;
-        protected BenefitPackage empBenefits = new BenefitPackage();
-        public List<Expense> Expenses { get; set; } = new List<Expense>();
-
-        #region Properties 
-        public string FirstName { get; }
-        public string LastName { get; }
-        public int ID { get { return eID; } }
-        public float Pay { get { return currPay; } }
-        public int Age { get { return today.Year - empDOB.Year; } }
-        public DateTime DateOfBirth { get { return empDOB; } }
-        public string SocialSecurityNumber { get { return empSSN; } }
-        public string embBenefitPackage { get { return empBenefits.ToString(); } }
-        public virtual string Role { get { return GetType().ToString().Substring(10); } }
-        public string GetName()
-        { return Name; }
-
-        // Expose object through a read-only property.
-        public BenefitPackage Benefits
-        {
-            get { return empBenefits; }
-        }
-        #endregion
-
         #region Serialization customization for NextId
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)

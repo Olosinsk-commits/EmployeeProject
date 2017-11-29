@@ -38,7 +38,7 @@ namespace Employees
         private string _SSN = "XXX-XX-XXXX";
         private string _spare1Value = "";
         private string _spare2Value = "";
-        private float _Pay = 1000;
+        private float _Pay=1000;
 
         public string FirstName
         {
@@ -125,8 +125,9 @@ namespace Employees
                     break;
 
                 case "PersonaPay":
-                    if (_Pay < 1000 || _Pay > 10000)
-                        validationMessage = "Range is 1000 to 10,000";
+                        if (_Pay <= 0 && _Pay >= 10000)
+                            validationMessage = "Range is 0 to 10,000";
+                    
                     break;
 
                 case "Spare1Value":
@@ -280,7 +281,7 @@ namespace Employees
         {
             e.CanExecute = !String.IsNullOrWhiteSpace(FirstName) && !String.IsNullOrWhiteSpace(LastName) &&
                 !Validation.GetHasError(DOBDateBox) && !Validation.GetHasError(SpareProp1Value)
-                 && !Validation.GetHasError(SSNCombobox) && !Validation.GetHasError(PayCombobox);
+                 && !Validation.GetHasError(SSNTextBox) && !Validation.GetHasError(PayTextBox);
         }
 
         // Return error message if there is error on else return empty or null string
@@ -341,7 +342,7 @@ namespace Employees
                 PersonaFirstName = "";
                 PersonaLastName = "";
                 _Pay = 0;
-                _SSN = "XXX-XX-XXXX"; ;
+                _SSN = ""; ;
                 compHome.RefreshEmployeeList();
                 this.NavigationService.GoBack();
             }

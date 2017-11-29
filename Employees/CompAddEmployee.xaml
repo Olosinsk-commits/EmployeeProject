@@ -61,12 +61,12 @@
                      Text="{Binding DOB, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
 
             <Label Content="SSN:" Grid.Column="0" Grid.Row="5" Style="{StaticResource labelStyle}" />
-            <TextBox Name="SSNCombobox" Grid.Column="1" Grid.Row="5" Style="{StaticResource textBoxStyle}" 
+            <TextBox Name="SSNTextBox" Grid.Column="1" Grid.Row="5" Style="{StaticResource textBoxStyle}" 
                      Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
                      Text="{Binding SSN, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
 
             <Label Content="Pay:" Grid.Column="0" Grid.Row="6" Style="{StaticResource labelStyle}" />
-            <TextBox Name="PayCombobox" Grid.Column="1" Grid.Row="6" Style="{StaticResource textBoxStyle}" 
+            <TextBox Name="PayTextBox" Grid.Column="1" Grid.Row="6" Style="{StaticResource textBoxStyle}" 
                      Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
                      Text="{Binding PersonaPay, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
 

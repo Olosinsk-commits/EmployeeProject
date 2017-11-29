@@ -57,6 +57,7 @@
     <Compile Include="CompAddEmployee.xaml.cs">
       <DependentUpon>CompAddEmployee.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Employee.core.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeList.cs" />
     <Compile Include="Executive.cs" />
