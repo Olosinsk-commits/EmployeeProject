@@ -5,69 +5,87 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Employees"
       mc:Ignorable="d" 
-      Title="Employees - Home" >
-
-
-    <Grid Margin="10,0,10,10" >
+      d:DesignWidth="431.891"
+      Title="Employee - Home"  >
+    
+    <!-- Outer grid -->
+    <Grid Margin="10,0,10,10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
+        <!-- Watermark in top left corner-->
+        <Image Style="{StaticResource WatermarkImage}" Grid.Column="0" Grid.Row="0" Height="156" Grid.RowSpan="3" Width="181" Grid.ColumnSpan="1" />
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="3*" MaxHeight="40"/>
-            <RowDefinition Height="17*"/>
-            <RowDefinition Height="15*" MaxHeight="30"/>
-            <RowDefinition Height="112*" />
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        <!-- Add Employee button -->
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="120" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <!--<Grid.Background>
-            <Icon="Back" Click="GoBackButton"/>
-        </Grid.Background>-->
-        <!--<Button x:Name="BackButton" Height="30" Width="100" Content="Back" Click="BackButton_Click"/>-->
+            <Button Content="Add Employee" Grid.Column="0" Grid.Row="1" Style="{StaticResource buttonStyle}" Height="Auto" Click="AddEmployee_Click" />
+        </Grid>
 
-        <!-- Add image in top left corner of grid-->
-        <Image Style="{StaticResource WatermarkImage}" Height="156" Grid.RowSpan="4" Width="181" Grid.ColumnSpan="2" />
+        <!-- Employees grid -->
+        <Grid Grid.Column="1" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="57*" MaxHeight="40"/>
+                <RowDefinition Height="57*" MaxHeight="30"/>
+                <RowDefinition Height="147*" />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <!-- Employee Label in top right of grid-->
-        <Label Style="{StaticResource headerTextStyle}" Height="35" Margin="150,0,-0.4,5" Grid.ColumnSpan="2" Grid.RowSpan="2" >
-            Employees
-        </Label>
+            <!-- Employees label -->
+            <Label Grid.Row="0" Style="{StaticResource headerTextStyle}" Height="35" Margin="0,0,0,5" Content="Employees" />
 
-        <!-- Employee type list box-->
-        <ListBox Name="employeeTypeRadioButtons" Grid.Row="2" Style="{StaticResource HorizontalRadioList}" Grid.ColumnSpan="2" Margin="150,0,-0.4,0.4">
-            <ListBoxItem Style="{StaticResource HorizontalRadio}" Margin="0,5,0,0"  MinWidth="50">
-                All
-            </ListBoxItem>
-            <ListBoxItem Style="{StaticResource HorizontalRadio}"  MinWidth="75">
-                Managers
-            </ListBoxItem>
-            <ListBoxItem Style="{StaticResource HorizontalRadio}" Margin="0,5,0,0"  MinWidth="50">
-                Sales
-            </ListBoxItem>
-            <ListBoxItem Style="{StaticResource HorizontalRadio}" Margin="0,5,0,0"  MinWidth="50">
-                Other
-            </ListBoxItem>
-        </ListBox>
+            <!-- Employee radio buttons -->
+            <ListBox Name="EmployeeTypeRadioButtons" Style="{StaticResource HorizontalRadioList}" Grid.Row="1">
+                <ListBoxItem Content="All" Style="{StaticResource HorizontalRadio}"  MinWidth="40" />
+                <ListBoxItem Content="Managers" Style="{StaticResource HorizontalRadio}" MinWidth="75" />
+                <ListBoxItem Content="Sales" Style="{StaticResource HorizontalRadio}" MinWidth="50" />
+                <ListBoxItem Content="Other" Style="{StaticResource HorizontalRadio}" />
+            </ListBox>
+            
+            <!-- Employees data grid -->
+            <DataGrid  Name="dgEmps" Grid.Row="2" AutoGenerateColumns="False" CanUserAddRows="False" HeadersVisibility="Column">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" MinWidth="45" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" MinWidth="80" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" MinWidth="80" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Role" Binding="{Binding Role}" MinWidth="100" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
 
-        <!-- Data grid for list of Employees in left side of grid-->
-        <DataGrid Name="dgEmps" Grid.Row="2" AutoGenerateColumns="False" CanUserAddRows="False" HeadersVisibility="Column" Grid.ColumnSpan="2" Margin="150,30,-0.4,0.4" Grid.RowSpan="2" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding ID}" MinWidth="45" IsReadOnly="True"/>
-                <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" MinWidth="80" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" MinWidth="80" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Role" Binding="{Binding Role}" MinWidth="80" IsReadOnly="True"/>
+            <!-- Button row -->
+            <Grid Grid.Row="3">
 
-            </DataGrid.Columns>
-        </DataGrid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition MaxWidth="170"/>
+                </Grid.ColumnDefinitions>
 
-        <!-- Details button in bottom right of grid-->
-        <Button Grid.Column="1" Name="btnDetails" IsEnabled="False" Grid.Row="4" Click="Details_Click" Style="{StaticResource buttonStyle}" Height="Auto" Margin="0,9.6,-0.4,0.2">Details</Button>
+                <!-- Details button -->
+                <Button Content="Details" Grid.Column="1" Grid.Row="3" Style="{StaticResource buttonStyle}" Height="Auto" Command="Save" >
+                    <Button.CommandBindings>
+                        <CommandBinding Command="Save" 
+                              Executed="Details_Executed" CanExecute="Button_CanExecute"/>
+                    </Button.CommandBindings>
+                </Button>
 
-        <!-- Details button in bottom right of grid-->
-        <Button Grid.Column="1" Name="btnExpanses" IsEnabled="False"  Grid.Row="4" Click="Expenses_Click"  Style="{StaticResource buttonStyle}" Height="Auto" Margin="0,9.548,176.6,0.252" Content="Expenses"/>
-        <Button Grid.Row="3" Click="AddEmployee_Click" Style="{StaticResource buttonStyle}" Height="Auto" Margin="0,54.6,20.4,140.4" Content="Add Employee" Width="105"/>
+                <!-- Expenses button -->
+                <Button Content="Expenses" Grid.Column="0" Grid.Row="3" Style="{StaticResource buttonStyle}" Height="Auto" Command="Save" >
+                    <Button.CommandBindings>
+                        <CommandBinding Command="Save" 
+                            Executed="Expenses_Executed" CanExecute="Button_CanExecute"/>
+                    </Button.CommandBindings>
+                </Button>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

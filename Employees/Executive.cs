@@ -1,138 +1,91 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Collections;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml.Serialization;
-using System.Runtime.Serialization;
-using System.IO;
 
 namespace Employees
 {
-    [Serializable]
+    // Executives have titles
+    public enum ExecTitle { VP, CEO, CTO, CFO }
+
+    [System.Serializable]
     public class Executive : Manager
     {
+        #region Data members
         public ExecTitle Title { get; set; } = ExecTitle.VP;
+        private static string prop2Name = "Title:";
+        private static object prop2DefaultValue = new List<string>() { "VP", "CEO", "CTO", "CFO" };
+    #endregion
 
-        private static object prop1DefaultValue = 1000;
+        #region Constructors 
+        // Executives start with Gold benefits and 10,000 stock options
         public Executive() : base()
         {
             empBenefits = new GoldBenefitPackage();
             StockOptions = 10000;
         }
-        private List<Employee> _reports = new List<Employee>();
 
-        public Executive(string firstName, string lastName, DateTime age, float currPay,
+		public Executive(string firstName, string lastName, DateTime age, float currPay, 
                          string ssn, int numbOfOpts = 10000, ExecTitle title = ExecTitle.VP)
           : base(firstName, lastName, age, currPay, ssn, numbOfOpts)
         {
-            // Title defined by the Executive class.
-            Title = title;
+			// Title defined by the Executive class.
+			Title = title;
             empBenefits = new GoldBenefitPackage();
-        }
+		}
+        #endregion
 
-        public Executive(string firstName, string lastName, DateTime age, float currPay,
-                 string ssn, int numbOfOpts)
-          : base(firstName, lastName, age, currPay, ssn, numbOfOpts)
-        {
-        }
+        #region Class methods
+        public override void DisplayStats()
+		{
+			base.DisplayStats();
+			Console.WriteLine("Executive Title: {0}", Title);
+		}
 
+        // Change Role line to include title
         public override string Role { get { return base.Role + ", " + Title; } }
 
-        // Add Employee spare props
-        public new static string SpareAddProp1Name() { return prop1Name; }
-
-        public new static object SpareAddProp1DefaultValue() { return prop1DefaultValue; }
-
-        public static object SpareAddProp3Convert(object obj)
+        // Executives get an extra 1000 bonus and 10,000 stock options on promotion
+        public override void GivePromotion()
         {
-            if (obj is int) return obj;
-            else if (obj is string)
-            {
-                string s = (string)obj;
-                int value;
-
-                if (int.TryParse(s, out value)) return value;
-            }
-
-            return -1;
+            base.GivePromotion();
+            GiveBonus(1000);
+            StockOptions += 10000;
         }
 
-        // Return error message if there is error on else return empty or null string
-        public new static string SpareAddProp1Valid(object obj)
-        {
-            if (obj is string)
-            {
-                string s = (string)obj;
-                int value;
-
-                if (int.TryParse(s, out value) && value >= 0 && value <= 10000)
-                    return String.Empty;
-            }
-
-            return "Range is 0 to 100,000";
-        }
-
-        private static string prop2Name = "Reports:";
-
-        public override void GetSpareProp2(ref string name, ref string value)
-        {
-            name = prop2Name;
-            value = reports();
-        }
-
-        private static string prop1Name = "Stock Options:";
-
-        // Details spare prop
-        public override void GetSpareProp1(ref string name, ref string value)
-        {
-            name = prop1Name;
-            value = StockOptions.ToString();
-        }
-
-        private string reports()
-        {
-            string temp = "";
-            foreach (Employee report in _reports)
-            {
-                temp += string.Format("{0}, ", report.GetName());
-            }
-            if (temp.Length > 0)
-                return temp.Remove(temp.Length - 2);
-            else
-                return temp;
-        }
-
-        // Methods for adding/removing reports
-        public override void AddReport(Employee newReport)
+		// Methods for adding reports
+		public override void AddReport(Employee newReport)
         {
             // Check for proper report to Executive
             if (newReport is Manager || newReport is SalesPerson)
             {
-                _reports.Add(newReport);
+                base.AddReport(newReport);
             }
             else
             {
-                Console.WriteLine("AddReport Error: {0} is not a Manager or SalesPerson, and cannot report to an Executive",
-                                  newReport.Name);
-            }
+                // Raise exception for report that is not a Manager or Salesperson
+                Exception ex = new AddReportException("Executive report not a Manager or Salesperson");
+
+                // Add Manager custom data dictionary
+                ex.Data.Add("Manager", this.Name);
+
+                // Add report that failed to be added, and throw exception
+                ex.Data.Add("New Report", newReport.Name);
+                throw ex;
+            }            
         }
 
-        public override void RemoveReport(Employee emp)
-        {
-            // Remove report
-            _reports.Remove(emp);
-        }
+        // Add Employee spare props
+        public new static string SpareAddProp1Name() { return Manager.SpareAddProp1Name(); }
+        public new static object SpareAddProp1DefaultValue() { return Manager.SpareAddProp1DefaultValue(); }
+
+        public new static string SpareAddProp2Name() { return prop2Name; }
+        public new static object SpareAddProp2DefaultValue() { return prop2DefaultValue; }
+
+        public new static object SpareAddProp1Convert(object obj) { return Manager.SpareAddProp1Convert(obj); }
+        public new static string SpareAddProp1Valid(object obj) { return Manager.SpareAddProp1Valid(obj); }
+
+        public new static object SpareAddProp2Convert(object obj) { return (ExecTitle)obj; }
+        public new static string SpareAddProp2Valid(object obj) { return String.Empty; }
+
+        #endregion
     }
 }

@@ -1,147 +1,103 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Collections;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml.Serialization;
-using System.Runtime.Serialization;
-using System.IO;
-
 
 namespace Employees
 {
-
-    // Engineers have degrees
-    [Serializable]
-    public enum DegreeName { BS, MS, PhD }
-    [Serializable]
-    public enum ExecTitle { CEO, CTO, CFO, VP }
-    [Serializable]
-    public enum ShiftName { One, Two, Three }
-
-
-    
-
-
-    [Serializable]
     public partial class CompHome : Page
     {
-        const string filename = "Employees.dat";
-        public static EmployeeList empList = new EmployeeList(filename);
+        #region Data members
+        private EmployeeList empList;
+        #endregion
 
-        public bool ddDashEnabled = false;
-
+        #region Constructors
         public CompHome()
         {
-
             InitializeComponent();
-
-
-            // Select the All radio button
-            this.employeeTypeRadioButtons.SelectedIndex = 0;
-
-            // Set event handler for radio button changes
-            this.employeeTypeRadioButtons.SelectionChanged += new SelectionChangedEventHandler(employeeTypeRadioButtons_SelectionChanged);
-
-            dgEmps.SelectionChanged += DgEmps_SelectionChanged;
-
-            // Fill the Employees data grid
-            dgEmps.ItemsSource = empList;
         }
 
         public CompHome(EmployeeList emps) : this()
         {
             empList = emps;
 
-            // Select the All radio button
-            this.employeeTypeRadioButtons.SelectedIndex = 0;
+            // Set event handler for Employee type radio button
+            this.EmployeeTypeRadioButtons.SelectionChanged += new SelectionChangedEventHandler(EmployeeTypeRadioButtons_SelectionChanged);
 
-            // Set event handler for radio button changes
-            this.employeeTypeRadioButtons.SelectionChanged += new SelectionChangedEventHandler(employeeTypeRadioButtons_SelectionChanged);
-
-            // Fill the Employees data grid
-            dgEmps.ItemsSource = empList;
+            // Select the first employee type radio button
+            this.EmployeeTypeRadioButtons.SelectedIndex = 0;
+            RefreshEmployeeList();
         }
+        #endregion
 
-        private void DgEmps_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        #region Class methods / Event handlers
+        // Handle enable/disable of Details and Expenses buttons
+        private void Button_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            btnDetails.IsEnabled = true;
-            btnExpanses.IsEnabled = true;
+            // Check if an Employee is selected to enable Review button
+            e.CanExecute = dgEmps.SelectedIndex >= 0;
         }
 
-        private void Details_Click(object sender, RoutedEventArgs e)
+        // Handle Details button click
+        private void Details_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            // Show Employee details if one selected
-            if (dgEmps.SelectedIndex >= 0)
-            {
-                this.NavigationService.Navigate(new CompDetails(this.dgEmps.SelectedItem));
-            }
+            // Create Details page and navigate to page
+            this.NavigationService.Navigate(new CompDetails(this.dgEmps.SelectedItem));
         }
 
-        private void Expenses_Click(object sender, RoutedEventArgs e)
+        // Handle Expenses button click
+        private void Expenses_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            // Show Expenses details if button selected
-            if (dgEmps.SelectedIndex >= 0)
-            {
-                this.NavigationService.Navigate(new CompExpenses(this.dgEmps.SelectedItem));
-            }
+            // Create Expenses page and navigate to page
+            CompExpenses expensesPage = new CompExpenses(this.dgEmps.SelectedItem);
+            this.NavigationService.Navigate(expensesPage);
         }
 
-
-
+        // Handle Add employee button click
         private void AddEmployee_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new CompAddEmployee(this, empList));
         }
 
         // Handle changes to Employee type radio buttons
-        void employeeTypeRadioButtons_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void EmployeeTypeRadioButtons_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             RefreshEmployeeList();
-
         }
 
         // Filter Employee list according to radio button setting
-       public void RefreshEmployeeList()
+        public void RefreshEmployeeList()
         {
+            List<Employee> empList1;
+
             // Apply the selection
-            switch (this.employeeTypeRadioButtons.SelectedIndex)
+            switch (this.EmployeeTypeRadioButtons.SelectedIndex)
             {
                 // Managers
-                case 1:
-                    dgEmps.ItemsSource = (List<Employee>)empList.FindAll(obj => obj is Manager);
+                case 1: empList1 = (List<Employee>)empList.FindAll(obj => obj is Manager);
                     break;
 
                 // Sales
                 case 2:
-                    dgEmps.ItemsSource = (List<Employee>)empList.FindAll(obj => obj is SalesPerson);
+                    empList1 = (List<Employee>)empList.FindAll(obj => obj is SalesPerson);
                     break;
 
                 // Other
                 case 3:
-                    dgEmps.ItemsSource = (List<Employee>)empList.FindAll(obj => !(obj is Manager || obj is SalesPerson));
+                    empList1 = (List<Employee>)empList.FindAll(obj => !(obj is Manager || obj is SalesPerson));
                     break;
 
-
-
                 // All 
-                default:
-                    dgEmps.ItemsSource = empList;
+                default: empList1 = empList;
                     break;
             }
 
+            dgEmps.ItemsSource = new ObservableCollection<Employee>(empList1);
+
             dgEmps.Items.Refresh();
         }
+        #endregion
     }
 }

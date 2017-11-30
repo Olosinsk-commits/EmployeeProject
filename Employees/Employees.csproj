@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{25A3188F-7928-4018-8500-A9D8C1307186}</ProjectGuid>
+    <ProjectGuid>{F4E345A9-6F56-4A5F-82A1-5F3D847D57CF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Employees</RootNamespace>
     <AssemblyName>Employees</AssemblyName>
@@ -57,28 +57,34 @@
     <Compile Include="CompAddEmployee.xaml.cs">
       <DependentUpon>CompAddEmployee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Employee.core.cs" />
-    <Compile Include="Employee.cs" />
-    <Compile Include="EmployeeList.cs" />
-    <Compile Include="Executive.cs" />
-    <Compile Include="Expense.cs" />
+    <Compile Include="CompDetails.xaml.cs">
+      <DependentUpon>CompDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CompExpenses.xaml.cs">
       <DependentUpon>CompExpenses.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PTSalesPerson.cs" />
+    <Compile Include="CompHome.xaml.cs">
+      <DependentUpon>CompHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Expense.cs" />
+    <Compile Include="PTSalesEmployee.cs" />
     <Compile Include="SalesPerson.cs" />
     <Compile Include="SupportPerson.cs" />
     <Page Include="CompAddEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CompDetails.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CompDetails.xaml">
+    <Page Include="CompExpenses.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CompHome.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -88,24 +94,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CompDetails.xaml.cs">
-      <DependentUpon>CompDetails.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CompHome.xaml.cs">
-      <DependentUpon>CompHome.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Manager.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeList.cs" />
     <Compile Include="Engineer.cs" />
+    <Compile Include="Executive.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="CompExpenses.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -122,8 +121,8 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Compile Include="..\..\..\..\projects\EmployeeProject\Employees\Employee.Core" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

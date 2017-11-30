@@ -6,35 +6,27 @@ using System.Threading.Tasks;
 
 namespace Employees
 {
-    [Serializable]
-    public enum ExpenseCategory { Conference, Lodging, Meals, Misc, Travel }
+    public enum ExpenseCategory { Travel, Meals, Lodging, Conference, Misc }
 
     [Serializable]
     public class Expense
     {
         #region Data members / properties
         public DateTime Date { get; set; } = DateTime.Today;
-        public String Description { get; set; }
         public ExpenseCategory Category { get; set; }
+        public string Description { get; set; }
         public double Amount { get; set; }
         #endregion
 
         #region Constructors
         public Expense() { }
 
-        public Expense(DateTime expDate, ExpenseCategory category, double amount)
-        {
-            Date = expDate;
-            Category = category;
-            Amount = amount;
-        }
-
         public Expense(DateTime expDate, ExpenseCategory category, string description, double amount)
         {
             Date = expDate;
             Category = category;
-            Amount = amount;
             Description = description;
+            Amount = amount;
         }
         #endregion
     }

@@ -1,23 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 
 namespace Employees
 {
-    [Serializable]
     public partial class CompExpenses : Page
     {
         #region Data members
@@ -30,9 +16,7 @@ namespace Employees
         public CompExpenses()
         {
             InitializeComponent();
-            DataContext = this;
         }
-
 
         // Custom constructor to pass Employee object
         public CompExpenses(object data) : this()
@@ -46,10 +30,8 @@ namespace Employees
 
                 // Bind data grid to Employee expenses
                 dgExpenses.ItemsSource = new ObservableCollection<Expense>(emp.Expenses);
-
             }
         }
-
         #endregion
 
         #region Event handlers
@@ -63,8 +45,8 @@ namespace Employees
 
                 expense.Date = exp.Date;
                 expense.Category = exp.Category;
-                expense.Amount = exp.Amount;
                 expense.Description = exp.Description;
+                expense.Amount = exp.Amount;
                 emp.Expenses.Add(expense);
             }
         }
@@ -79,7 +61,6 @@ namespace Employees
                     {
                         Expense expense = row as Expense;
                         emp.Expenses.Remove(expense);
-                       
                     }
                 }
             }

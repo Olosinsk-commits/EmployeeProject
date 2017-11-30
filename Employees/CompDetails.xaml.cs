@@ -1,32 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
 namespace Employees
 {
-    /// <summary>
-    /// Interaction logic for CompDetails.xaml
-    /// </summary>
     public partial class CompDetails : Page
     {
+        #region Constructors
         public CompDetails()
         {
             InitializeComponent();
         }
-
-        public CompDetails(Object data) : this()
+        string pay;
+        // Custom constructor to pass Employee object
+        public CompDetails(object data) : this()
         {
+            // Bind context to Employee
             this.DataContext = data;
 
             if (data is Employee)
@@ -37,8 +24,8 @@ namespace Employees
                 string name2 = "";
                 string value2 = "";
 
-                emp.GetSpareProp1(ref name1, ref value1);
-                emp.GetSpareProp2(ref name2, ref value2);
+                emp.SpareDetailProp1(ref name1, ref value1);
+                emp.SpareDetailProp2(ref name2, ref value2);
 
                 SpareProp1Name.Content = name1;
                 SpareProp1Value.Content = value1;
@@ -46,5 +33,6 @@ namespace Employees
                 SpareProp2Value.Content = value2;
             }
         }
+        #endregion
     }
 }

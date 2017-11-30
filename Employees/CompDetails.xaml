@@ -5,7 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Employees"
       mc:Ignorable="d"
-      Title="Employee - Details" >
+      d:DesignWidth="376" d:DesignHeight="281"
+      Title="Employee - Details"  >
 
     <Grid Margin="10,0,10,10">
 
@@ -19,58 +20,58 @@
         <Image Style="{StaticResource WatermarkImage}" Height="156" Grid.RowSpan="3" Width="181" Grid.ColumnSpan="1" />
 
         <!-- Employee details in second column of outer grid -->
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="90" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
-                <RowDefinition MaxHeight="28"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <!-- Employee Details title in first column, first row -->
             <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource headerTextStyle}" Content="Employee Details" />
 
             <!-- Field name/value labels in remaining rows -->
-            <Label Content="Name:" Grid.Column="0" Grid.Row="1" Style="{StaticResource labelStyle}" Margin="0" />
-            <Label Content="{Binding Name}" Grid.Column="1" Grid.Row="1" Style="{StaticResource labelStyle}" Margin="0" />
+            <Label Content="Name:" Grid.Column="0" Grid.Row="1" Style="{StaticResource labelStyle}" />
+            <Label Content="{Binding Name}" Grid.Column="1" Grid.Row="1" Style="{StaticResource labelStyle}" />
 
-            <Label Content="Role:" Grid.Column="0" Grid.Row="2" Style="{StaticResource labelStyle}" Margin="0" />
-            <Label Content="{Binding Role}" Grid.Column="1" Grid.Row="2" Style="{StaticResource labelStyle}" Margin="0" />
+            <Label Content="Role:" Grid.Column="0" Grid.Row="2" Style="{StaticResource labelStyle}" />
+            <Label Content="{Binding Role}" Grid.Column="1" Grid.Row="2" Style="{StaticResource labelStyle}" />
 
-            <Label Content="Id:" Grid.Column="0" Grid.Row="3" Style="{StaticResource labelStyle}" Margin="0" />
-            <Label Content="{Binding ID}" Grid.Column="1" Grid.Row="3" Style="{StaticResource labelStyle}" Margin="0" />
+            <Label Content="Id:" Grid.Column="0" Grid.Row="3" Style="{StaticResource labelStyle}" />
+            <Label Content="{Binding Id}" Grid.Column="1" Grid.Row="3" Style="{StaticResource labelStyle}" />
 
-            <Label Content="DOB:" Grid.Column="0" Grid.Row="4" Style="{StaticResource labelStyle}" Margin="0" />
-            <Label Content="{Binding DateOfBirth}" Grid.Column="1" Grid.Row="4" Style="{StaticResource labelStyle}" Margin="0" />
+            <Label Content="DOB:" Grid.Column="0" Grid.Row="4" Style="{StaticResource labelStyle}" />
+            <Label Content="{Binding DateOfBirth}" Grid.Column="1" Grid.Row="4" Style="{StaticResource labelStyle}" />
 
-            <Label Content="Age:" Grid.Column="0" Grid.Row="5" Style="{StaticResource labelStyle}" Margin="0" />
-            <Label Content="{Binding Age}" Grid.Column="1" Grid.Row="5" Style="{StaticResource labelStyle}" Margin="0" />
+            <Label Content="Age:" Grid.Column="0" Grid.Row="5" Style="{StaticResource labelStyle}" />
+            <Label Content="{Binding Age}" Grid.Column="1" Grid.Row="5" Style="{StaticResource labelStyle}" />
 
-            <Label Content="SSN:" Grid.Column="0" Grid.Row="6" Style="{StaticResource labelStyle}" Margin="0" />
-            <Label Content="{Binding SocialSecurityNumber}" Grid.Column="1" Grid.Row="6" Style="{StaticResource labelStyle}" Margin="0" />
+            <Label Content="SSN:" Grid.Column="0" Grid.Row="6" Style="{StaticResource labelStyle}" />
+            <Label Content="{Binding SocialSecurityNumber}" Grid.Column="1" Grid.Row="6" Style="{StaticResource labelStyle}" />
 
-            <Label Content="Pay" Grid.Column="0" Grid.Row="7" Style="{StaticResource labelStyle}" Margin="0" />
-            <Label Content="{Binding Pay}" Grid.Column="1" Grid.Row="7" Style="{StaticResource labelStyle}" Margin="0" />
+            <Label Content="Pay:" Grid.Column="0" Grid.Row="7" Style="{StaticResource labelStyle}" />
+            <Label Content="{Binding PayFormat}" Grid.Column="1" Grid.Row="7" Style="{StaticResource labelStyle}" />
 
-            <Label Content="Benefits:" Grid.Column="0" Grid.Row="8" Style="{StaticResource labelStyle}" Margin="0"/>
-            <Label Content="{Binding Benefits}" Grid.Column="1" Grid.Row="8" Style="{StaticResource labelStyle}" Margin="0" />
+            <Label Content="Benefits:" Grid.Column="0" Grid.Row="8" Style="{StaticResource labelStyle}" />
+            <Label Content="{Binding Benefits}" Grid.Column="1" Grid.Row="8" Style="{StaticResource labelStyle}" />
 
-            <Label Name="SpareProp1Name" Content="Spare1" Grid.Column="0" Grid.Row="9" Style="{StaticResource labelStyle}" Margin="0" />
-            <Label Name="SpareProp1Value" Content="Value1" Grid.Column="1" Grid.Row="9" Style="{StaticResource labelStyle}" Margin="0"  />
+            <Label Name="SpareProp1Name" Content="Spare1" Grid.Column="0" Grid.Row="9" Style="{StaticResource labelStyle}" />
+            <Label Name="SpareProp1Value" Content="Value1" Grid.Column="1" Grid.Row="9" Style="{StaticResource labelStyle}"  />
 
-            <Label Name="SpareProp2Name" Content="Spare2" Grid.Column="0" Grid.Row="10" Style="{StaticResource labelStyle}" Margin="0"  />
-            <Label Name="SpareProp2Value" Content="Value2" Grid.Column="1" Grid.Row="10" Style="{StaticResource labelStyle}" Margin="0"  />
+            <Label Name="SpareProp2Name" Content="Spare2" Grid.Column="0" Grid.Row="10" Style="{StaticResource labelStyle}" />
+            <Label Name="SpareProp2Value" Content="Value2" Grid.Column="1" Grid.Row="10" Style="{StaticResource labelStyle}" />
         </Grid>
     </Grid>
 </Page>

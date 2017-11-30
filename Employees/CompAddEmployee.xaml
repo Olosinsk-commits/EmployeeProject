@@ -4,8 +4,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Employees"
-      mc:Ignorable="d"
-      Title="Employee - Add New" >
+      mc:Ignorable="d" 
+      d:DesignHeight="304.255" d:DesignWidth="436.941"
+      Title="Employee - Add">
 
     <Grid Margin="10,0,10,10">
 
@@ -37,19 +38,17 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <!-- Employee Details title in first column, first row -->
+            <!-- Add Employee title in first column of inner grid, first row -->
             <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource headerTextStyle}" Content="Add Employee" />
 
             <!-- Field name/value labels in remaining rows -->
             <Label Content="First Name:" Grid.Column="0" Grid.Row="1" Style="{StaticResource labelStyle}" />
             <TextBox Name="FirstNameTextBox" Grid.Column="1" Grid.Row="1" Style="{StaticResource textBoxStyle}"
-                     Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
-                     Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
+                     Text="{Binding FirstName}" MaxLength="15" />
 
             <Label Content="Last Name:" Grid.Column="0" Grid.Row="2" Style="{StaticResource labelStyle}" />
             <TextBox Name="LastNameTextBox" Grid.Column="1" Grid.Row="2" Style="{StaticResource textBoxStyle}" 
-                     Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
-                     Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
+                     Text="{Binding LastName}" MaxLength="15" />
 
             <Label Content="Role:" Grid.Column="0" Grid.Row="3" Style="{StaticResource labelStyle}" />
             <ComboBox Name="RoleComboBox" Grid.Column="1" Grid.Row="3" Style="{StaticResource comboBoxStyle}"
@@ -63,26 +62,27 @@
             <Label Content="SSN:" Grid.Column="0" Grid.Row="5" Style="{StaticResource labelStyle}" />
             <TextBox Name="SSNTextBox" Grid.Column="1" Grid.Row="5" Style="{StaticResource textBoxStyle}" 
                      Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
-                     Text="{Binding SSN, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
+                     Text="{Binding SSN, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}" />
 
             <Label Content="Pay:" Grid.Column="0" Grid.Row="6" Style="{StaticResource labelStyle}" />
-            <TextBox Name="PayTextBox" Grid.Column="1" Grid.Row="6" Style="{StaticResource textBoxStyle}"
+            <TextBox Name="PayBox" Grid.Column="1" Grid.Row="6" Style="{StaticResource textBoxStyle}" 
                      Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
-                     Text="{Binding PPay, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
+                     Text="{Binding Pay, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}" />
 
+            <!-- Support for two spare properties - either a scalar value or a combo/string value -->
             <Label Name="SpareProp1Name" Grid.Column="0" Grid.Row="7" Style="{StaticResource labelStyle}" />
             <TextBox Name="SpareProp1Value" Grid.Column="1" Grid.Row="7" Style="{StaticResource textBoxStyle}"
                      Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
                      Text="{Binding Spare1Value, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}" />
             <ComboBox Name="SpareProp1Combo" Grid.Column="1" Grid.Row="7" Style="{StaticResource comboBoxStyle}" />
 
-
-            <!--<Label Name="SpareProp2Name" Grid.Column="0" Grid.Row="8" Style="{StaticResource labelStyle}" />
-            <TextBox Name="SpareProp2Value" Grid.Column="1" Grid.Row="8" Style="{StaticResource textBoxStyle}"
+            <Label Name="SpareProp2Name" Content="" Grid.Column="0" Grid.Row="8" Style="{StaticResource labelStyle}" />
+            <TextBox Name="SpareProp2Value" Grid.Column="1" Grid.Row="8" Style="{StaticResource textBoxStyle}" 
                      Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
                      Text="{Binding Spare2Value, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}" />
-            <ComboBox Name="SpareProp2Combo" Grid.Column="1" Grid.Row="8" Style="{StaticResource comboBoxStyle}" />-->
+            <ComboBox Name="SpareProp2Combo" Grid.Column="1" Grid.Row="8" Style="{StaticResource comboBoxStyle}" />
 
+            <!-- Save Employee button - only enabled when all fields validated in controller code -->
             <Button Content="Save" Grid.Column="1" Grid.Row="9" Style="{StaticResource buttonStyle}" Height="Auto" Command="Save" >
                 <Button.CommandBindings>
                     <CommandBinding Command="Save" 

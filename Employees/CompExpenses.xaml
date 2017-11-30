@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Employees"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="485.542"
-      Title="Employee - Expenses">
+      d:DesignWidth="472.884" d:DesignHeight="161.183"
+      Title="Employee - Expenses" >
 
     <Grid Margin="10,0,10,10">
 
@@ -47,35 +47,26 @@
             <Label Content="{Binding Role}" Grid.Column="1" Grid.Row="2" Style="{StaticResource labelStyle}" Margin="0" />
 
             <Label Content="Id:" Grid.Column="0" Grid.Row="3" Style="{StaticResource labelStyle}" Margin="0" />
-            <Label Content="{Binding ID}" Grid.Column="1" Grid.Row="3" Style="{StaticResource labelStyle}" Margin="0" />
+            <Label Content="{Binding Id}" Grid.Column="1" Grid.Row="3" Style="{StaticResource labelStyle}" Margin="0" />
         </Grid>
 
         <!-- Employees data grid -->
         <DataGrid Name="dgExpenses" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" AutoGenerateColumns="False" HeadersVisibility="Column" 
-                  RowEditEnding="DgExp_RowEditEnding"
-                  PreviewKeyDown="DgExp_PreviewKeyDown"
+                  RowEditEnding="DgExp_RowEditEnding" PreviewKeyDown="DgExp_PreviewKeyDown"
                   AddingNewItem="DgExp_AddingNewItem" BeginningEdit="DgExp_BeginningEdit">
-
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Date" MinWidth="100"
+                <DataGridTextColumn Header="Date" MinWidth="90"
                                     Binding="{Binding Date, ValidatesOnExceptions=True, StringFormat=d, NotifyOnTargetUpdated=True, 
-                                                Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
-
+                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <DataGridComboBoxColumn Header="Category"  MinWidth="100" SelectedItemBinding="{Binding Category}" 
                                         ItemsSource="{Binding Source={StaticResource ExpenseCategory}}" />
-
-
-                <DataGridTextColumn Header="Description" MinWidth="150"
-                                    Binding="{Binding Description, ValidatesOnExceptions=True, StringFormat=d, NotifyOnTargetUpdated=True, 
-                                                Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
-
-                <DataGridTextColumn Header="Amount" MinWidth="100" HeaderStyle="{StaticResource RightHeader}" 
+                <DataGridTextColumn Header="Description" MinWidth="180" 
+                                    Binding="{Binding Description, TargetNullValue=(enter a description), NotifyOnTargetUpdated=True, 
+                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+                <DataGridTextColumn Header="Amount" MinWidth="90" HeaderStyle="{StaticResource RightHeader}" 
                                     ElementStyle="{StaticResource RightCell}" EditingElementStyle="{StaticResource RightCellEdit}"
                                     Binding="{Binding Amount, ValidatesOnExceptions=True, StringFormat=C, NotifyOnTargetUpdated=True, 
-                                                Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
-
-
-
+                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

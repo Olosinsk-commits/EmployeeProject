@@ -1,50 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Collections;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml.Serialization;
-using System.Runtime.Serialization;
-using System.IO;
+
 namespace Employees
 {
-    [Serializable]
+    // Salespeople need to know their number of sales.
+    [System.Serializable]
     class SalesPerson : Employee
     {
-        #region constructors 
+        #region Data members
+        public int SalesNumber { get; set; }
+
+        // Spare prop data
+        private static string prop1Name = "Sales Number:";
+        private static object prop1DefaultValue = 0;
+        #endregion
+
+        #region Constructors 
         public SalesPerson() { }
 
-        // As a general rule, all subclasses should explicitly call an appropriate
-        // base class constructor.
-        public SalesPerson(string firstName, string lastName, DateTime age,
-          float currPay, string ssn, int numbOfSales)
+        // Subclasses should explicitly call an appropriate base class constructor.
+        public SalesPerson(string firstName, string lastName, DateTime age, float currPay, 
+                           string ssn, int numbOfSales)
           : base(firstName, lastName, age, currPay, ssn)
         {
             // This belongs with us!
             SalesNumber = numbOfSales;
         }
-
-
-        public SalesPerson(string firstName, string lastName, DateTime age,
-                     float currPay, string ssn)
-         : base(firstName, lastName, age, currPay, ssn)
-        {
-        }
         #endregion
 
-        public int SalesNumber { get; set; }
-
+        #region Class methods
         // A salesperson's bonus is influenced by the number of sales.
         public override sealed void GiveBonus(float amount)
         {
@@ -71,21 +54,21 @@ namespace Employees
         public override void DisplayStats()
         {
             base.DisplayStats();
-            Console.WriteLine("Sales Number: {0:N0}", SalesNumber);
+            Console.WriteLine("Number of sales: {0:N0}", SalesNumber);
         }
 
-        private static string prop1Name = "Sales Number:";
-
-        private static object prop1DefaultValue = 0;
+        // Details spare prop
+        public override void SpareDetailProp1(ref string propName, ref string propValue)
+        {
+            propName  = prop1Name;
+            propValue = SalesNumber.ToString();
+        }
 
         // Add Employee spare props
+        public new static string SpareAddProp1Name() { return prop1Name; }
+        public new static object SpareAddProp1DefaultValue() { return prop1DefaultValue; }
 
-        // Add Employee spare props
-        public  static string SpareAddProp1Name() { return prop1Name; }
-        public  static object SpareAddProp1DefaultValue() { return prop1DefaultValue; }
-
-
-        public  static object SpareAddProp1Convert(object obj)
+        public new static object SpareAddProp1Convert(object obj)
         {
             if (obj is int) return obj;
             else if (obj is string)
@@ -99,26 +82,20 @@ namespace Employees
             return -1;
         }
 
-
         // Return error message if there is error on else return empty or null string
-        public static string SpareAddProp1Valid(object obj)
+        public new static string SpareAddProp1Valid(object obj)
         {
             if (obj is string)
             {
                 string s = (string)obj;
                 int value;
 
-                if (int.TryParse(s, out value) && value >= 0 && value <= 10000)
+                if (int.TryParse(s, out value) && value >= 0 && value <= 1000)
                     return String.Empty;
             }
 
-            return "Range is 0 to 10,000";
+            return "Range is 0 to 1,000";
         }
-
-        public override void GetSpareProp1(ref string name, ref string value)
-        {
-            name = prop1Name;
-            value = SalesNumber.ToString();
-        }
+        #endregion
     }
 }

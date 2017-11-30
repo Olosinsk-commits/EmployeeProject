@@ -1,119 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Collections;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml.Serialization;
-using System.Runtime.Serialization;
-using System.IO;
+using System.Collections.Generic;
 
 namespace Employees
 {
-    [Serializable]
+    // Managers need to know their number of stock options and reports
+    [System.Serializable]
     public class Manager : Employee, IEnumerable<Employee>
     {
-        #region constructors 
+        #region Constants, data members and properties
+        // Add a private member for reports
+        public const int MaxReports = 5;
+        private List<Employee> _reports = new List<Employee>();
+
+        // Stock options unique to Managers
+        public int StockOptions { get; set; }
+
+        // Spare prop data
+        private static string prop1Name = "Stock Options:";
+        private static object prop1DefaultValue = 0;
+        #endregion
+
+        #region Constructors 
+        // Static constructor for Add Employee spare props
         public Manager() { }
 
-        public Manager(string firstName, string lastName, DateTime age,
-                       float currPay, string ssn, int numbOfOpts)
+        public Manager(string firstName, string lastName, DateTime age, float currPay, string ssn, 
+                       int numbOfOpts)
           : base(firstName, lastName, age, currPay, ssn)
         {
             // This property is defined by the Manager class.
             StockOptions = numbOfOpts;
         }
-
-        public Manager(string firstName, string lastName, DateTime age, float currPay,
-         string ssn)
-          : base(firstName, lastName, age, currPay, ssn)
-        {
-        }
-        #endregion
-
-        #region Constants, data members and properties
-        // Add a private member for reports
-        public const int MaxReports = 5;
-        private static object prop1DefaultValue = 500;
-        private List<Employee> _reports = new List<Employee>();
-        private static string prop1Name = "Stock Options:";
-        //private static string prop2Name = "Reports:";
-
-        // Stock options unique to Managers
-        public int StockOptions { get; set; }
-        // Add Employee spare props
-        public static string SpareAddProp1Name() { return prop1Name; }
-        public static object SpareAddProp1DefaultValue() { return prop1DefaultValue; }
-
-        public static object SpareAddProp1Convert(object obj)
-        {
-            if (obj is int) return obj;
-            else if (obj is string)
-            {
-                string s = (string)obj;
-                int value;
-
-                if (int.TryParse(s, out value)) return value;
-            }
-
-            return -1;
-        }
-
-        // Return error message if there is error on else return empty or null string
-        public static string SpareAddProp1Valid(object obj)
-        {
-            if (obj is string)
-            {
-                string s = (string)obj;
-                int value;
-
-                if (int.TryParse(s, out value) && value >= 0 && value <= 10000)
-                    return String.Empty;
-            }
-
-            return "Range is 0 to 10,000";
-        }
-
-        #endregion
-        private static string prop2Name = "Reports:";
-        public override void GetSpareProp2(ref string name, ref string value)
-        {
-            name = prop2Name;
-            value = reports();
-        }
-
-
-
-        // Details spare prop
-        public override void GetSpareProp1(ref string name, ref string value)
-        {
-            name = prop1Name;
-            value = StockOptions.ToString();
-        }
-
-        private string reports()
-        {
-            string temp = "";
-            foreach (Employee report in _reports)
-            {
-                temp += string.Format("{0}, ", report.GetName());
-            }
-            if (temp.Length > 0)
-                return temp.Remove(temp.Length - 2);
-            else
-                return temp;
-        }
-
+		#endregion
 
         #region Exceptions
         // Exception raised when adding more than MaxReports to a Manager
@@ -121,37 +40,31 @@ namespace Employees
         public class AddReportException : ApplicationException
         {
             // Standard exception constructors
-            public AddReportException() { }
-            public AddReportException(string message)
-                : base(message) { }
-            public AddReportException(string message, Exception inner)
-                : base(message, inner) { }
-            protected AddReportException(System.Runtime.Serialization.SerializationInfo info,
-                                  System.Runtime.Serialization.StreamingContext context)
-                : base(info, context) { }
+            public AddReportException() {}
+            public AddReportException(string message) 
+                : base(message) {}
+            public AddReportException(string message, Exception inner) 
+                : base(message, inner) {}
+            protected AddReportException(System.Runtime.Serialization.SerializationInfo info, 
+                                  System.Runtime.Serialization.StreamingContext context) 
+                : base(info, context) {}
         }
         #endregion
 
         #region Class Methods
-        // Enumerate reports for Manager
-        public IEnumerator<Employee> GetEnumerator() { return _reports.GetEnumerator(); }
-
-        IEnumerator IEnumerable.GetEnumerator() { return this.GetEnumerator(); }
-
-        // Enumerate reports, sorted by Employee Name, Age, and Pay
-        public IEnumerable<Employee> ReportsByName() { return GetReports(Employee.SortByName); }
-        public IEnumerable<Employee> ReportsByAge() { return GetReports(Employee.SortByAge); }
-        public IEnumerable<Employee> ReportsByPay() { return GetReports(Employee.SortByPay); }
-
-        // Enumerator to return reports in passed sort order 
-        // (null indicating no sort)
-        private IEnumerable<Employee> GetReports(IComparer<Employee> sortOrder = null)
+        // Override GiveBonus to change stock options for Manager
+        public override void GiveBonus(float amount)
         {
-            // Sort reports if sort order non-null
-            if (sortOrder != null) _reports.Sort(sortOrder);
+            base.GiveBonus(amount);
+            Random r = new Random();
+            StockOptions += r.Next(500);
+        }
 
-            // Enumerate reports in specified order
-            return this;
+        // A Manager gets an extra 600 on promotion
+        public override void GivePromotion()
+        {
+            base.GivePromotion();
+            GiveBonus(600);
         }
 
         // Methods for adding/removing reports
@@ -183,7 +96,7 @@ namespace Employees
             }
 
             // Only add report if not already a report and not same as this
-            else
+            else 
             {
                 // Put Employee in empty position
                 _reports.Add(newReport);
@@ -204,11 +117,82 @@ namespace Employees
 
             // Print out reports on a single line
             Console.Write("Reports: ");
-            foreach (Employee emp in this)
-                Console.Write("{0} ", emp.Name);
-            Console.WriteLine();
+			foreach (Employee emp in this)
+				Console.Write("{0} ", emp.Name);
+			Console.WriteLine();
         }
+
+        // Details spare props
+        public override void SpareDetailProp1(ref string propName, ref string propValue)
+        {
+            propName  = prop1Name;
+            propValue = StockOptions.ToString();
+        }
+        public override void SpareDetailProp2(ref string propName, ref string propValue)
+        {
+            propName = "Reports:";
+            propValue = "";
+            int count = _reports.Count;
+
+            for (int i = 0; i < count; i++)
+            {
+                propValue += string.Format($"{_reports[i].Name}");
+                if (i < count - 1) propValue += ", ";
+            }
+        }
+
+        // Add Employee spare props
+        public new static string SpareAddProp1Name() { return prop1Name; }
+        public new static object SpareAddProp1DefaultValue() { return prop1DefaultValue; }
+
+        public new static object SpareAddProp1Convert(object obj)
+        {
+            if (obj is int) return obj;
+            else if (obj is string)
+            {
+                string s = (string)obj;
+                int value;
+
+                if (int.TryParse(s, out value)) return value;
+            }
+
+            return -1;
+        }
+
+        // Return error message if there is error on else return empty or null string
+        public new static string SpareAddProp1Valid(object obj)
+        {
+            if (obj is string)
+            {
+                string s = (string)obj;
+                int value;
+
+                if (int.TryParse(s, out value) && value >= 0 && value <= 10000)
+                    return String.Empty;
+            }
+
+            return "Range is 0 to 100,000";
+        }
+
+        #region Enumerate reports for Manager
+        public IEnumerator<Employee> GetEnumerator() { return _reports.GetEnumerator(); }
+        IEnumerator IEnumerable.GetEnumerator() { return this.GetEnumerator(); }
+
+        // Enumerate reports, sorted by Employee Name, Age, and Pay
+        public IEnumerable<Employee> ReportsByName() { return GetReports(Employee.SortByName); }
+        public IEnumerable<Employee> ReportsByAge() { return GetReports(Employee.SortByAge); }
+        public IEnumerable<Employee> ReportsByPay() { return GetReports(Employee.SortByPay); }
+
+        // Enumerator to return reports in passed sort order (null indicating no sort)
+        private IEnumerable<Employee> GetReports(IComparer<Employee> sortOrder = null)
+        {
+            // Sort reports if sort order non-null
+            if (sortOrder != null) _reports.Sort(sortOrder);
+
+            // Enumerate reports in specified order
+            return this;
+        }
+        #endregion
         #endregion
     }
 }
-
