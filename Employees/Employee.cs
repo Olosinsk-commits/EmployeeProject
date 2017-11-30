@@ -83,6 +83,7 @@ namespace Employees
             this.eID = id;
             empDOB = date;
             empSSN = ssn;
+            currPay = pay;
             empID++;
             FirstName = firstName;
             LastName = lastName;

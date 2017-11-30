@@ -64,6 +64,7 @@ namespace Employees
                 expense.Date = exp.Date;
                 expense.Category = exp.Category;
                 expense.Amount = exp.Amount;
+                expense.Description = exp.Description;
                 emp.Expenses.Add(expense);
             }
         }

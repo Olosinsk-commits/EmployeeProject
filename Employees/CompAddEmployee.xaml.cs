@@ -35,7 +35,8 @@ namespace Employees
         private string PersonaLastName = "";
         private DateTime _DOB = DateTime.Today.AddYears(-21);
         Regex _SSNTemplate = new Regex(@"^\d{3}-?\d{2}-?\d{4}$|^XXX-XX-XXXX$");
-        private string _SSN = "XXX-XX-XXXX";
+
+        private string _SSN="000-00-0000";
         private string _spare1Value = "";
         private string _spare2Value = "";
         private float _Pay=1000;
@@ -64,10 +65,10 @@ namespace Employees
             set { _SSN = value; OnPropertyChanged("SSN"); }
         }
 
-        public float PersonaPay
+        public float PPay
         {
-            get { return _Pay; }
-            set { _Pay = value; OnPropertyChanged("PersonaPay"); }
+            get { return _Pay;            }
+            set { _Pay = value; OnPropertyChanged("PPay"); }
         }
 
         public string Spare1Value
@@ -124,8 +125,9 @@ namespace Employees
                         validationMessage = "Please, use format XXX-XX-XXXX.";
                     break;
 
-                case "PersonaPay":
-                        if (_Pay <= 0 && _Pay >= 10000)
+                case "PPay":
+
+                        if (_Pay >= 10000 &&_Pay <= 0 )
                             validationMessage = "Range is 0 to 10,000";
                     
                     break;
@@ -164,8 +166,8 @@ namespace Employees
             var assembly = empType.Assembly;
 
             // Add Employee to list
-            empTypes.Add(empType);
-            EmpTypeNames.Add("Employee");
+            //empTypes.Add(empType);
+            //EmpTypeNames.Add("Employee");
 
             foreach (Type t in assembly.GetTypes())
             {
@@ -314,7 +316,7 @@ namespace Employees
         {
             Type t = empTypes[RoleComboBox.SelectedIndex];
 
-            ArrayList args = new ArrayList() { FirstName, LastName, DOB, PersonaPay, SSN };
+            ArrayList args = new ArrayList() { FirstName, LastName, DOB, PPay, SSN };
 
             string[] SpareAddProp = { "SpareAddProp1", "SpareAddProp2", "SpareAddProp3", "SpareAddProp4" };
 
@@ -341,8 +343,7 @@ namespace Employees
                 // Null out name fields and go back to home page
                 PersonaFirstName = "";
                 PersonaLastName = "";
-                _Pay = 0;
-                _SSN = ""; ;
+                _SSN = "";
                 compHome.RefreshEmployeeList();
                 this.NavigationService.GoBack();
             }

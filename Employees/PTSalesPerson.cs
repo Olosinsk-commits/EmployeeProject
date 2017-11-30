@@ -62,7 +62,7 @@ namespace Employees
 
 
         // Return error message if there is error on else return empty or null string
-        public static string SpareAddProp1Valid(object obj)
+        public new static string SpareAddProp1Valid(object obj)
         {
             if (obj is string)
             {

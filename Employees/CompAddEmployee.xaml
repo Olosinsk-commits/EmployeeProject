@@ -66,9 +66,9 @@
                      Text="{Binding SSN, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
 
             <Label Content="Pay:" Grid.Column="0" Grid.Row="6" Style="{StaticResource labelStyle}" />
-            <TextBox Name="PayTextBox" Grid.Column="1" Grid.Row="6" Style="{StaticResource textBoxStyle}" 
+            <TextBox Name="PayTextBox" Grid.Column="1" Grid.Row="6" Style="{StaticResource textBoxStyle}"
                      Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" 
-                     Text="{Binding PersonaPay, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
+                     Text="{Binding PPay, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, StringFormat=d}" />
 
             <Label Name="SpareProp1Name" Grid.Column="0" Grid.Row="7" Style="{StaticResource labelStyle}" />
             <TextBox Name="SpareProp1Value" Grid.Column="1" Grid.Row="7" Style="{StaticResource textBoxStyle}"
