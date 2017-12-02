@@ -33,9 +33,20 @@
                 
             </Grid.RowDefinitions>
 
-            <Button Content="Add Employee" Grid.Column="0" Grid.Row="1" Style="{StaticResource buttonStyle}" Height="Auto" Click="AddEmployee_Click" />
-            <Button Content="Remove Employee" Grid.Column="0" Grid.Row="2" Style="{StaticResource buttonStyle}" Height="Auto" />
-            <Button Content="Analytics" Grid.Column="0" Grid.Row="3" Margin="0,35,0,0" Style="{StaticResource buttonStyle}" Height="Auto" />
+            <Button Content="Add Employee" Grid.Column="0" Grid.Row="1" 
+                    Style="{StaticResource buttonStyle}" Height="Auto" Click="AddEmployee_Click" />
+
+            <Button Content="Remove Employee" Grid.Column="0" Grid.Row="2" 
+                    Style="{StaticResource buttonStyle}" Height="Auto" Command="Save"
+                    Click="RemoveEmployee_Click"> 
+                   <Button.CommandBindings>
+                       <CommandBinding Command="Save" 
+                            Executed="Remove_Executed" CanExecute="Button_CanExecute"/>
+                </Button.CommandBindings>
+            </Button> 
+            
+            <Button Content="Analytics" Grid.Column="0" Grid.Row="3" Margin="0,35,0,0" 
+                    Style="{StaticResource buttonStyle}" Height="Auto" />
         </Grid>
 
         <!-- Employees grid -->

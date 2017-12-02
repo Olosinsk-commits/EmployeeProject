@@ -19,8 +19,8 @@ namespace Employees
         #region Constructors
         public EmployeeList()
         {
+            File.Delete(DataFile);
             FileInfo dataFile = new FileInfo(DataFile);
-
             // Load data if file found, otherwise use initial dummy set of Employees
             if (dataFile.Exists) LoadEmployeeList();
             else
@@ -36,6 +36,7 @@ namespace Employees
         // Load/Save Employees from/to file
         public void LoadEmployeeList(string dataFile = DataFile)
         {
+
             using (Stream fStream = File.OpenRead(dataFile))
             {
                 foreach (Employee emp in (EmployeeList)binFormat.Deserialize(fStream))

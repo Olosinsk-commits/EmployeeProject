@@ -55,10 +55,28 @@ namespace Employees
             this.NavigationService.Navigate(expensesPage);
         }
 
+        private void Remove_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            // Create Expenses page and navigate to page
+            this.NavigationService.Navigate(new CompHome(this.empList));
+        }
+
         // Handle Add employee button click
         private void AddEmployee_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new CompAddEmployee(this, empList));
+        }
+
+        // Handle Add employee button click
+        private void RemoveEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(var row in dgEmps.SelectedItems)
+            { 
+            Employee empl = row as Employee;
+                empList.Remove(empl); 
+            }
+            //dgEmps.InvalidateVisual();
+            dgEmps.Items.Refresh();
         }
 
         // Handle changes to Employee type radio buttons

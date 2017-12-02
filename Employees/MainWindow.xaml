@@ -8,5 +8,5 @@
         Icon="./watermark.png" 
         MinWidth="510" MinHeight="400"
         WindowStartupLocation="CenterScreen"
-        Title="Employee *** Forever *** Assignment#10" Height="450" Width="550" ResizeMode="CanResize">
+        Title="Employee *** Forever *** Assignment#10" Height="450" Width="555" ResizeMode="CanResize">
 </NavigationWindow>

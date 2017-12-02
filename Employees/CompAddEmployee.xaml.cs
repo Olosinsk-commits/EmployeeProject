@@ -126,6 +126,7 @@ namespace Employees
             DataContext = this;
             RoleComboBox.SelectedIndex = 0;
         }
+
         #endregion
 
         #region Class methods and event handlers
