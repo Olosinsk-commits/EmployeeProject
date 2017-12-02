@@ -136,8 +136,7 @@ namespace Employees
 
             for (int i = 0; i < count; i++)
             {
-                propValue += string.Format($"{_reports[i].Name}");
-                if (i < count - 1) propValue += ", ";
+                propValue += string.Format($"{_reports[i].Name}\n");
             }
         }
 

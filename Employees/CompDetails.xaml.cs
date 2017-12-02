@@ -9,7 +9,6 @@ namespace Employees
         {
             InitializeComponent();
         }
-        string pay;
         // Custom constructor to pass Employee object
         public CompDetails(object data) : this()
         {

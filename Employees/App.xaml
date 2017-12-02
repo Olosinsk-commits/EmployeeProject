@@ -29,6 +29,7 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="FontWeight" Value="Medium" />
             <Setter Property="Margin" Value="0" />
+
         </Style>
 
         <!-- TextBox style -->
@@ -58,6 +59,22 @@
             <Setter Property="Width" Value="120" />
         </Style>
 
+
+        <Style x:Key="comboRStyle" TargetType="{x:Type ComboBox}">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Width" Value="125" />
+         </Style>
+
+        <Style x:Key="buttonRStyle" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="125" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="left" />
+
+        </Style>
+
         <!-- Button style -->
         <Style x:Key="buttonStyle" TargetType="{x:Type Button}">
             <Setter Property="Width" Value="125" />
@@ -66,7 +83,10 @@
             <Setter Property="HorizontalAlignment" Value="Right" />
         </Style>
 
-        <!-- Radio button for Employee type -->
+
+
+
+            <!-- Radio button for Employee type -->
         <Style x:Key="HorizontalRadio" TargetType="{x:Type ListBoxItem}">
             <Setter Property="Margin" Value="0,5,5,0" />
             <Setter Property="Template">
