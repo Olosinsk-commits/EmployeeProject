@@ -1,9 +1,17 @@
 ﻿using System.Windows.Controls;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Employees
 {
+
     public partial class CompDetails : Page
     {
+        Employee empl;
+
         #region Constructors
         public CompDetails()
         {
@@ -18,6 +26,7 @@ namespace Employees
             if (data is Employee)
             {
                 Employee emp = (Employee)data;
+                empl = emp;
                 string name1 = "";
                 string value1 = "";
                 string name2 = "";
@@ -33,5 +42,20 @@ namespace Employees
             }
         }
         #endregion
+
+        // Handle give promotion button click
+        private void GivePromotion_Click(object sender, RoutedEventArgs e)
+        {
+            empl.GivePromotion();
+
+            //InitializeComponent();
+            this.Refresh();
+        }
+
+        public void Refresh()
+        {
+            this.NavigationService.Navigate(new CompDetails(empl));
+        }
     }
 }
+

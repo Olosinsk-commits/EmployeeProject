@@ -29,7 +29,14 @@
             </Grid.RowDefinitions>
 
             <Button Content="Promotion" Margin="5,125,0,0" Grid.Column="0" Grid.Row="0"
-                    Style="{StaticResource buttonRStyle}"/>
+                    Style="{StaticResource buttonRStyle}" 
+                    Click="GivePromotion_Click" >
+                <!--<Button.CommandBindings>
+                    <CommandBinding Command="Save" 
+                            Executed="Give_Executed" 
+                                    CanExecute="Button_CanExecute" />
+                </Button.CommandBindings>-->
+            </Button>
 
             <Button Content="Bonus"  Margin="5,5,0,0" Grid.Column="0" Grid.Row="1" 
                     Style="{StaticResource buttonRStyle}" />

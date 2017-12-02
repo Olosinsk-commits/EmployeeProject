@@ -67,7 +67,8 @@ namespace Employees
             this.NavigationService.Navigate(new CompAddEmployee(this, empList));
         }
 
-        // Handle Add employee button click
+
+        // Handle Remove employee button click
         private void RemoveEmployee_Click(object sender, RoutedEventArgs e)
         {
             foreach(var row in dgEmps.SelectedItems)
