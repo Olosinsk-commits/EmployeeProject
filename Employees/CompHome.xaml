@@ -22,18 +22,25 @@
         <Grid Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="130"/>
+
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition MaxHeight="120" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                
             </Grid.RowDefinitions>
 
             <Button Content="Add Employee" Grid.Column="0" Grid.Row="1" Style="{StaticResource buttonStyle}" Height="Auto" Click="AddEmployee_Click" />
+            <Button Content="Remove Employee" Grid.Column="0" Grid.Row="2" Style="{StaticResource buttonStyle}" Height="Auto" />
+            <Button Content="Analytics" Grid.Column="0" Grid.Row="3" Margin="0,35,0,0" Style="{StaticResource buttonStyle}" Height="Auto" />
         </Grid>
 
         <!-- Employees grid -->
         <Grid Grid.Column="1" Grid.Row="0">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="57*" MaxHeight="40"/>
                 <RowDefinition Height="57*" MaxHeight="30"/>
@@ -42,7 +49,21 @@
             </Grid.RowDefinitions>
 
             <!-- Employees label -->
-            <Label Grid.Row="0" Style="{StaticResource headerTextStyle}" Height="35" Margin="0,0,0,5" Content="Employees" />
+
+            <Grid Grid.Column ="1" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130"/>
+
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Style="{StaticResource headerTextStyle}" Height="35" Margin="0,0,0,5" Content="Employees" />
+                <TextBox Name="txtSearch" Height="20" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" 
+                     VerticalAlignment="Top" Width="120" Text="Search" Margin="10"   />
+            </Grid>
+            
+
+
+
 
             <!-- Employee radio buttons -->
             <ListBox Name="EmployeeTypeRadioButtons" Style="{StaticResource HorizontalRadioList}" Grid.Row="1">

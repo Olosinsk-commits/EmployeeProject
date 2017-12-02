@@ -14,6 +14,8 @@
             <Setter Property="Opacity" Value="0.5" />
         </Style>
 
+        
+        
         <!-- Header text style -->
         <Style x:Key="headerTextStyle">
             <Setter Property="Label.VerticalAlignment" Value="Center"></Setter>
