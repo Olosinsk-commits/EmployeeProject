@@ -100,8 +100,11 @@
             <Label Name="SpareProp1Value" Content="Value1" Grid.Column="1" Grid.Row="9" Style="{StaticResource labelStyle}"  />
 
             <Label Name="SpareProp2Name" Content="Spare2" Grid.Column="0" Grid.Row="10" Style="{StaticResource labelStyle}" />
-            <Label Name="SpareProp2Value" BorderBrush="LightGray"
-                   BorderThickness="0.5" Content="Value2" Grid.Column="1" Grid.Row="10" Style="{StaticResource labelStyle}" />
+            <!--<Label Name="SpareProp2Value" BorderBrush="LightGray" 
+                   BorderThickness="0.5" Content="Value2" Grid.Column="1" Grid.Row="10" Style="{StaticResource labelStyle}" />-->
+
+            <ListBox Name="SpareProp2Value"  Grid.Column="1" Grid.Row="10"  >
+            </ListBox>
 
             <Grid Grid.Column="2" Grid.Row="10">
 
@@ -112,16 +115,29 @@
                 </Grid.RowDefinitions>
 
 
-                <Button Content="Remove Report"  Command="Save" Grid.Column="0" Grid.Row="0"
-                    Style="{StaticResource buttonRStyle}" Margin="10,5,0,0"/>
+                <Button Content="Remove Report" Command="Save" Grid.Column="0" Grid.Row="0"
+                    Style="{StaticResource buttonRStyle}" Margin="10,5,0,0">
+                    <Button.CommandBindings>
+                        <CommandBinding Command="Save" 
+                            Executed="RemoveReport_Executed" CanExecute="Button_CanExecute"/>
+                    </Button.CommandBindings>
+                </Button>
 
                 <Button Content="Add Report"  Command="Save" Grid.Column="0" Grid.Row="1" 
-                    Style="{StaticResource buttonRStyle}" Margin="10,5,0,0"/>
-                
+                    Style="{StaticResource buttonRStyle}" Margin="10,5,0,0">
+                    <Button.CommandBindings>
+                        <CommandBinding Command="Save" 
+                            Executed="CommandBinding_Executed" CanExecute="Button_CanExecute"/>
+                    </Button.CommandBindings>
+                </Button>
+
                 <ComboBox Name="SpareProp2Combo" Grid.Column="0" Grid.Row="2" 
                  Margin="10,0,0,0"  Style="{StaticResource comboRStyle}" />
 
+
+
             </Grid>
+
         </Grid>
 
     </Grid>

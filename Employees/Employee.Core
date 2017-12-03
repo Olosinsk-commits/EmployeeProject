@@ -15,16 +15,14 @@ namespace Employees
         private DateTime empDOB;
         private string empSSN;
         private static int nextId = 1;   // Used to generate unique Ids
+		ff
         public static int NamespaceLength = 10;
         public List<Expense> Expenses = new List<Expense>();
         public string Name { get { return string.Format($"{empFirstName} {empLastName}"); } }
         public string FirstName { get { return empFirstName; } }
         public string LastName { get { return empLastName; } }
         public int Id { get { return empID; } }
-        public string GetName()
-        { return Name; }
-
-
+		
         public float Pay { get { return currPay ; } }
         public string PayFormat
         {
@@ -48,7 +46,6 @@ namespace Employees
             currPay = pay;
             empSSN = ssn;
         }
-
         #endregion
 
         #region Serialization customization for MaxId

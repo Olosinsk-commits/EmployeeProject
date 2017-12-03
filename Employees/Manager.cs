@@ -32,7 +32,7 @@ namespace Employees
             // This property is defined by the Manager class.
             StockOptions = numbOfOpts;
         }
-		#endregion
+        #endregion
 
         #region Exceptions
         // Exception raised when adding more than MaxReports to a Manager
@@ -122,6 +122,8 @@ namespace Employees
 			Console.WriteLine();
         }
 
+        
+
         // Details spare props
         public override void SpareDetailProp1(ref string propName, ref string propValue)
         {
@@ -139,6 +141,7 @@ namespace Employees
                 propValue += string.Format($"{_reports[i].Name}\n");
             }
         }
+
 
         // Add Employee spare props
         public new static string SpareAddProp1Name() { return prop1Name; }
@@ -183,7 +186,7 @@ namespace Employees
         public IEnumerable<Employee> ReportsByPay() { return GetReports(Employee.SortByPay); }
 
         // Enumerator to return reports in passed sort order (null indicating no sort)
-        private IEnumerable<Employee> GetReports(IComparer<Employee> sortOrder = null)
+        public IEnumerable<Employee> GetReports(IComparer<Employee> sortOrder = null)
         {
             // Sort reports if sort order non-null
             if (sortOrder != null) _reports.Sort(sortOrder);

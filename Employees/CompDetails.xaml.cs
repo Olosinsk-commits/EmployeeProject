@@ -16,6 +16,7 @@ namespace Employees
         public CompDetails()
         {
             InitializeComponent();
+
         }
         // Custom constructor to pass Employee object
         public CompDetails(object data) : this()
@@ -23,7 +24,10 @@ namespace Employees
             // Bind context to Employee
             this.DataContext = data;
 
+            //Reports.ItemsSource = Report;
+
             if (data is Employee)
+
             {
                 Employee emp = (Employee)data;
                 empl = emp;
@@ -33,12 +37,14 @@ namespace Employees
                 string value2 = "";
 
                 emp.SpareDetailProp1(ref name1, ref value1);
+
                 emp.SpareDetailProp2(ref name2, ref value2);
 
                 SpareProp1Name.Content = name1;
                 SpareProp1Value.Content = value1;
                 SpareProp2Name.Content = name2;
-                SpareProp2Value.Content = value2;
+                SpareProp2Value.Items.Add(value2);
+
             }
         }
         #endregion
@@ -55,6 +61,34 @@ namespace Employees
         public void Refresh()
         {
             this.NavigationService.Navigate(new CompDetails(empl));
+        }
+
+        // Handle enable/disable of Details and Expenses buttons
+        private void Button_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            // Check if an Employee is selected to enable Review button
+        }
+
+        // Handle Expenses button click
+        private void RemoveReport_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            // Create Expenses page and navigate to page
+ 
+            this.NavigationService.Navigate(new CompDetails(empl));
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            //List<Employee> empList1;
+
+            if (this.DataContext is Manager)
+            {
+                //empList1 = (List<Employee>)empList.FindAll(obj => !(obj is Executive));
+            }
+
+            else if (this.DataContext is Executive)
+            {
+            }
         }
     }
 }

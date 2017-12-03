@@ -31,6 +31,8 @@ namespace Employees
             public override string ToString() { return "Platinum ($250/month)"; }
         }
 
+   
+
         // Contain a BenefitPackage object.
         protected BenefitPackage empBenefits = new BenefitPackage();
 
@@ -75,7 +77,7 @@ namespace Employees
 
         // Details spare props
         public virtual void SpareDetailProp1(ref string propName, ref string propValue) { }
-        public virtual void SpareDetailProp2(ref string propName, ref string propValue) { }
+        public virtual void SpareDetailProp2(ref string propName, ref string value2) { }
 
         // Add Employee spare props
         public static string SpareAddProp1Name() { return null; }

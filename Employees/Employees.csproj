@@ -66,6 +66,7 @@
     <Compile Include="CompHome.xaml.cs">
       <DependentUpon>CompHome.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Employee.core.cs" />
     <Compile Include="Expense.cs" />
     <Compile Include="PTSalesEmployee.cs" />
     <Compile Include="SalesPerson.cs" />
@@ -122,7 +123,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="..\..\..\..\projects\EmployeeProject\Employees\Employee.Core" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
