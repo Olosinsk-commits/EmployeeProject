@@ -29,6 +29,7 @@ namespace Employees
             if (data is Employee)
 
             {
+
                 Employee emp = (Employee)data;
                 empl = emp;
                 string name1 = "";
@@ -37,14 +38,14 @@ namespace Employees
                 string value2 = "";
 
                 emp.SpareDetailProp1(ref name1, ref value1);
-
-                emp.SpareDetailProp2(ref name2, ref value2);
-
                 SpareProp1Name.Content = name1;
                 SpareProp1Value.Content = value1;
-                SpareProp2Name.Content = name2;
-                SpareProp2Value.Items.Add(value2);
 
+                emp.SpareDetailProp2(ref name2, ref value2);
+                SpareProp2Name.Content = name2;
+                SpareProp2Combo.ItemsSource = new string[] { "Employee 1", "Employee 2", "Employee 3", "Employee 4", "Employee 5" };
+
+                SpareProp2Value.Items.Add(value2);
             }
         }
         #endregion
@@ -67,17 +68,18 @@ namespace Employees
         private void Button_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             // Check if an Employee is selected to enable Review button
+            e.CanExecute = RBt.IsPressed;
         }
 
         // Handle Expenses button click
         private void RemoveReport_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            // Create Expenses page and navigate to page
- 
+            
+
             this.NavigationService.Navigate(new CompDetails(empl));
         }
 
-        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void CommandBinding_Executed(object sender, RoutedEventArgs e)
         {
             //List<Employee> empList1;
 
