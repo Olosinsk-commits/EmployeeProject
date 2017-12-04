@@ -19,6 +19,8 @@ namespace Employees
             InitializeComponent();
         }
 
+
+
         public CompHome(EmployeeList emps) : this()
         {
             empList = emps;

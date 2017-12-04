@@ -13,7 +13,7 @@ namespace Employees
         #region Constants, data members and properties
         // Add a private member for reports
         public const int MaxReports = 5;
-        private static List<Employee> _reports = new List<Employee>();
+        private List<Employee> _reports = new List<Employee>();
 
         // Stock options unique to Managers
         public int StockOptions { get; set; }
@@ -179,13 +179,13 @@ namespace Employees
         }
 
 
-        public static List<Employee> GetReports()
-        {
-            var rep = _reports.ToList<Employee>();
-            return rep;
-        }
+        //public static List<Employee> GetReports()
+        //{
+        //    var rep = _reports.ToList<Employee>();
+        //    return rep;
+        //}
 
-        public static List<Employee> GetRts
+        public List<Employee> GetRts
         {
             get { return _reports; }
         }

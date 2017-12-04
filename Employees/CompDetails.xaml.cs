@@ -11,16 +11,19 @@ namespace Employees
     public partial class CompDetails : Page
     {
         Employee empl;
+        private EmployeeList empList = new EmployeeList();
 
         #region Constructors
         public CompDetails()
         {
             InitializeComponent();
+            //empList = null;
 
         }
         // Custom constructor to pass Employee object
         public CompDetails(object data) : this()
         {
+
             // Bind context to Employee
             this.DataContext = data;
 
@@ -31,11 +34,13 @@ namespace Employees
             {
 
                 Employee emp = (Employee)data;
+
                 empl = emp;
                 string name1 = "";
                 string value1 = "";
                 string name2 = "";
                 string value2 = "";
+
 
                 emp.SpareDetailProp1(ref name1, ref value1);
                 SpareProp1Name.Content = name1;
@@ -43,13 +48,13 @@ namespace Employees
 
                 emp.SpareDetailProp2(ref name2, ref value2);
                 SpareProp2Name.Content = name2;
-                SpareProp2Combo.ItemsSource = Manager.GetReports();
+
                 if (data is Manager)
                 {
-                Manager mng = (Manager)data;
-                SpareProp2Value.ItemsSource = Manager.GetReports();
+                    Manager mng = (Manager)data;
+                    SpareProp2Combo.ItemsSource = empList;
+                    SpareProp2Value.ItemsSource = mng.GetRts;
                 }
-                //SpareProp2Value.Items.Add(value2);
             }
         }
         #endregion
@@ -78,7 +83,7 @@ namespace Employees
         // Handle Expenses button click
         private void RemoveReport_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            
+
 
             this.NavigationService.Navigate(new CompDetails(empl));
         }
