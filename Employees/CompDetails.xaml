@@ -45,13 +45,16 @@
               Margin="5,5,0,0"
               Grid.Column="0"
               Grid.Row="1"
-              Style="{StaticResource buttonRStyle}" />
+
+              Style="{StaticResource buttonRStyle}"
+              Click="Bonus_Click"/>
 
       <TextBox Name="BonusNumber"
                Grid.Column="0"
                Grid.Row="2"
                TextAlignment="Right"
                Margin="10,0.6,0,11"
+               Text="{Binding Bonus, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                Style="{StaticResource textBoxStyle}" />
 
       <Label Content="Enter $500-$10,000"
@@ -196,7 +199,9 @@
                Grid.Row="10">
         <ListBox.ItemTemplate>
           <DataTemplate>
+            
             <StackPanel Orientation="Horizontal">
+              <CheckBox Margin="0,0,5,0"></CheckBox>
               <TextBlock Text="{Binding Name}"></TextBlock>
             </StackPanel>
           </DataTemplate>
@@ -240,16 +245,18 @@
                   Grid.Row="2"
                   Margin="15,0,0,0"
                   Style="{StaticResource comboRStyle}">
-        <ComboBox.ItemTemplate>
-          <DataTemplate>
-            <StackPanel Orientation="Horizontal">
-              <TextBlock Text="{Binding Name}"></TextBlock>
-            </StackPanel>
-          </DataTemplate>
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+
+              <StackPanel Orientation="Horizontal">
+                <!--<CheckBox></CheckBox>-->
+                <TextBlock Text="{Binding Name}"></TextBlock>
+              </StackPanel>
+            </DataTemplate>
           </ComboBox.ItemTemplate>
+
         </ComboBox>
-        
-        
+
       </Grid>
 
     </Grid>

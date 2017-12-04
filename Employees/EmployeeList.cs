@@ -19,7 +19,7 @@ namespace Employees
         #region Constructors
         public EmployeeList()
         {
-            File.Delete(DataFile);
+            //File.Delete(DataFile);
             FileInfo dataFile = new FileInfo(DataFile);
             // Load data if file found, otherwise use initial dummy set of Employees
             if (dataFile.Exists) LoadEmployeeList();

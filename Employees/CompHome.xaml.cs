@@ -46,7 +46,7 @@ namespace Employees
         private void Details_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             // Create Details page and navigate to page
-            this.NavigationService.Navigate(new CompDetails(this.dgEmps.SelectedItem));
+            this.NavigationService.Navigate(new CompDetails(this.dgEmps.SelectedItem, empList));
         }
 
         // Handle Expenses button click
