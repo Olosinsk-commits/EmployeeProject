@@ -14,12 +14,14 @@ namespace Employees
         private EmployeeList emplL;
         private float amount = 100;
         #region Constructors
+        Manager mngR;
         public CompDetails()
         {
             InitializeComponent();
             //empList = null;
 
         }
+
         // Custom constructor to pass Employee object
         public CompDetails(object data, EmployeeList emplLT) : this()
         {
@@ -56,6 +58,7 @@ namespace Employees
                 if (data is Manager)
                 {
                     Manager mng = (Manager)data;
+                    mngR = mng;
                     SpareProp2Combo.ItemsSource = emplL;
                     SpareProp2Value.ItemsSource = mng.GetRts;
                 }
@@ -79,12 +82,16 @@ namespace Employees
             //this.Refresh();
         }
 
+
+
+
         
 
         private void Bonus_Click(object sender, RoutedEventArgs e)
         {
             empl.GiveBonus(amount);
             this.NavigationService.Navigate(new CompDetails(this.empl, this.emplL));
+            //empl.Pay =Pay;
             //InitializeComponent();
             //this.Refresh();
         }
@@ -102,11 +109,23 @@ namespace Employees
         }
 
         // Handle Expenses button click
+    
         private void RemoveReport_Executed(object sender, ExecutedRoutedEventArgs e)
         {
+            //SpareProp2Combo.Items.Remove(SpareProp2Combo.SelectedItem);
 
-
+            ///mngR.RemoveReport(SpareProp2Combo.SelectionBoxItem);
             this.NavigationService.Navigate(new CompDetails(empl, emplL));
+        }
+
+
+        private void RemoveR_Click(object sender, RoutedEventArgs e)
+        {
+            //SpareProp2Combo.Items.Remove(SpareProp2Combo.SelectedItem);
+            this.NavigationService.Navigate(new CompDetails(this.empl, this.emplL));
+
+            //InitializeComponent();
+            //this.Refresh();
         }
 
         private void CommandBinding_Executed(object sender, RoutedEventArgs e)

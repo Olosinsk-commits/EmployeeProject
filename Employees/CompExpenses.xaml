@@ -100,10 +100,14 @@
                             MinWidth="90"
                             Binding="{Binding Date, ValidatesOnExceptions=True, StringFormat=d, NotifyOnTargetUpdated=True, 
                                                 Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
         <DataGridComboBoxColumn Header="Category"
                                 MinWidth="100"
-                                SelectedItemBinding="{Binding Category}"
+                                SelectedItemBinding="{Binding Category, Mode=TwoWay,     NotifyOnTargetUpdated=True,                                                            UpdateSourceTrigger=PropertyChanged}"
                                 ItemsSource="{Binding Source={StaticResource ExpenseCategory}}" />
+
+
+
         <DataGridTextColumn Header="Description"
                             MinWidth="180"
                             Binding="{Binding Description, TargetNullValue=(enter a description), NotifyOnTargetUpdated=True, 

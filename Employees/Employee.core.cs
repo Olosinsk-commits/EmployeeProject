@@ -25,7 +25,9 @@ namespace Employees
         { return Name; }
 
 
-        public float Pay { get { return currPay ; } }
+        public float Pay { get { return currPay ; }
+        set { }
+        }
         public string PayFormat
         {
             get
@@ -56,7 +58,7 @@ namespace Employees
         private void OnDeserialized(StreamingContext context)
         {
             // Called when the deserialization process is complete.
-            if (empID > nextId) nextId = empID + 1;
+            if (empID >= nextId) nextId = empID + 1;
         }
         #endregion
     }

@@ -199,9 +199,8 @@
                Grid.Row="10">
         <ListBox.ItemTemplate>
           <DataTemplate>
-            
+
             <StackPanel Orientation="Horizontal">
-              <CheckBox Margin="0,0,5,0"></CheckBox>
               <TextBlock Text="{Binding Name}"></TextBlock>
             </StackPanel>
           </DataTemplate>
@@ -218,17 +217,18 @@
         </Grid.RowDefinitions>
         
         <Button Content="Remove Report"
-                Command="Save"
+                Click="RemoveR_Click"
                 Grid.Column="0"
                 Grid.Row="0"
                 Style="{StaticResource buttonRStyle}"
                 Margin="10,5,0,0">
-          
+
+          <!--
           <Button.CommandBindings>
             <CommandBinding Command="Save"
                             Executed="RemoveReport_Executed"
                             CanExecute="Button_CanExecute" />
-          </Button.CommandBindings>
+          </Button.CommandBindings>-->
         </Button>
 
         <Button Name="RBt"
