@@ -43,9 +43,13 @@ namespace Employees
 
                 emp.SpareDetailProp2(ref name2, ref value2);
                 SpareProp2Name.Content = name2;
-                SpareProp2Combo.ItemsSource = new string[] { "Employee 1", "Employee 2", "Employee 3", "Employee 4", "Employee 5" };
-
-                SpareProp2Value.Items.Add(value2);
+                SpareProp2Combo.ItemsSource = Manager.GetReports();
+                if (data is Manager)
+                {
+                Manager mng = (Manager)data;
+                SpareProp2Value.ItemsSource = Manager.GetReports();
+                }
+                //SpareProp2Value.Items.Add(value2);
             }
         }
         #endregion

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Employees
 {
@@ -11,7 +13,7 @@ namespace Employees
         #region Constants, data members and properties
         // Add a private member for reports
         public const int MaxReports = 5;
-        private List<Employee> _reports = new List<Employee>();
+        private static List<Employee> _reports = new List<Employee>();
 
         // Stock options unique to Managers
         public int StockOptions { get; set; }
@@ -174,6 +176,18 @@ namespace Employees
             }
 
             return "Range is 0 to 100,000";
+        }
+
+
+        public static List<Employee> GetReports()
+        {
+            var rep = _reports.ToList<Employee>();
+            return rep;
+        }
+
+        public static List<Employee> GetRts
+        {
+            get { return _reports; }
         }
 
         #region Enumerate reports for Manager
