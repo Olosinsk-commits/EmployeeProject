@@ -71,9 +71,6 @@ namespace Employees
             SupportPerson steve = new SupportPerson("Steve", "Kinny", DateTime.Parse("11/21/1982"), 80000, "913-43-4343", ShiftName.Two);
 
             // Bonuses and promotions
-            dan.GiveBonus(1000);
-            bob.GiveBonus(500);
-            sally.GiveBonus(400);
             dan.GivePromotion();
             chucky.GivePromotion();
             fran.GivePromotion();

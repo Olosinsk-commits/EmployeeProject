@@ -26,8 +26,8 @@ namespace Employees
 
 
         public float Pay { get { return currPay ; }
-        set { }
         }
+
         public string PayFormat
         {
             get

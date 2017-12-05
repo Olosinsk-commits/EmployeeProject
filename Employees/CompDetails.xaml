@@ -45,7 +45,6 @@
               Margin="5,5,0,0"
               Grid.Column="0"
               Grid.Row="1"
-
               Style="{StaticResource buttonRStyle}"
               Click="Bonus_Click"/>
 
@@ -54,7 +53,7 @@
                Grid.Row="2"
                TextAlignment="Right"
                Margin="10,0.6,0,11"
-               Text="{Binding Bonus, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+               Text="{Binding BonusTemp, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat=C}"
                Style="{StaticResource textBoxStyle}" />
 
       <Label Content="Enter $500-$10,000"

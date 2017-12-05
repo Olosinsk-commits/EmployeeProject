@@ -12,7 +12,7 @@ namespace Employees
     {
         Employee empl;
         private EmployeeList emplL;
-        private float amount = 100;
+        //private float amount;
         #region Constructors
         Manager mngR;
         public CompDetails()
@@ -30,7 +30,8 @@ namespace Employees
             // Bind context to Employee
             this.DataContext = data;
             emplL = emplLT;
-            amount = 100;
+            BonusNumber.DataContext = this;
+            //amount = 100;
             //this.DataContext = list;
             //emplL = MainWindow.GetList;
             //Reports.ItemsSource = Report;
@@ -67,30 +68,44 @@ namespace Employees
         #endregion
 
 
-        public float Bonus
+        //public float Bonus
+        //{
+        //    get { return amount; }
+        //    set { amount = value; }
+        //}
+        public float BonusTemp
         {
-            get { return amount; }
-            set { amount = value; }
-        }
+            get; set;
+        } 
+       
 
         // Handle give promotion button click
         private void GivePromotion_Click(object sender, RoutedEventArgs e)
         {
             empl.GivePromotion();
-            this.NavigationService.Navigate(new CompDetails(this.empl, this.emplL));
+
             //InitializeComponent();
-            //this.Refresh();
+            //this.NavigationService.Navigate(new CompDetails(this.empl, this.emplL));
+            object obj = DataContext;
+            DataContext = null;
+            DataContext = obj;
+
         }
 
+        void RemoveBackEntry(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.GoBack();
 
-
-
-        
+        }
 
         private void Bonus_Click(object sender, RoutedEventArgs e)
         {
-            empl.GiveBonus(amount);
-            this.NavigationService.Navigate(new CompDetails(this.empl, this.emplL));
+            empl.GiveBonus(BonusTemp);
+            object obj = DataContext;
+            DataContext = null;
+            DataContext = obj;
+
+            //this.NavigationService.Navigate(new CompDetails(this.empl, this.emplL));
             //empl.Pay =Pay;
             //InitializeComponent();
             //this.Refresh();
