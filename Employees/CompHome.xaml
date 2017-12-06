@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Employees"
+
       mc:Ignorable="d"
       d:DesignWidth="431.891"
       Title="Employee - Home">
@@ -90,27 +91,43 @@
 
           <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        
         <Label Grid.Row="0"
                Style="{StaticResource headerTextStyle}"
                Height="35"
                Margin="0,0,0,5"
                Content="Employees" />
-        <TextBox Name="txtSearch"
+
+
+        <TextBox Name="searchButton_Click"
                  Height="20"
                  Grid.Row="0"
                  Grid.Column="1"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  Width="120"
-                 Text="Search"
-                 Margin="10" />
+                 Margin="10">
+            <!--<TextBox.Text>
+                    <Binding Path="searchText"
+                     UpdateSourceTrigger="PropertyChanged"/>
+          </TextBox.Text>-->
+        </TextBox>
+
+
         <Button Content="X"
                 Grid.Column="1"
                 HorizontalAlignment="Left"
                 Margin="117.4,10,0,0"
                 VerticalAlignment="Top"
                 Width="13"
-                RenderTransformOrigin="-0.192,-0.112" />
+                Command="Save"
+                RenderTransformOrigin="-0.192,-0.112">
+          <Button.CommandBindings>
+            <CommandBinding Command="Save"
+                            Executed="XSearch_Executed"
+                            CanExecute="CommandBinding_CanExecute"/>
+          </Button.CommandBindings>
+        </Button>
       </Grid>
 
 

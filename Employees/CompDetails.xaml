@@ -220,14 +220,15 @@
                 Grid.Column="0"
                 Grid.Row="0"
                 Style="{StaticResource buttonRStyle}"
-                Margin="10,5,0,0">
+                Margin="10,5,0,0"
+                Command="Save">
 
-          <!--
           <Button.CommandBindings>
             <CommandBinding Command="Save"
                             Executed="RemoveReport_Executed"
-                            CanExecute="Button_CanExecute" />
-          </Button.CommandBindings>-->
+                            CanExecute="Button_CanExecuteRReport" />
+          </Button.CommandBindings>
+          
         </Button>
 
         <Button Name="RBt"
@@ -236,9 +237,19 @@
                 Grid.Row="1"
                 Style="{StaticResource buttonRStyle}"
                 Margin="10,5,0,0"
-                Click="CommandBinding_Executed">
+                Click="CommandBinding_Executed"
+                Command="Save">
+          
+          
+          <Button.CommandBindings>
+            <CommandBinding Command="Save"
+                            Executed="ReportAdd_Executed"
+                            CanExecute="Button_CanExecuteAReport" />
+          </Button.CommandBindings>
+
         </Button>
 
+               
         <ComboBox Name="SpareProp2Combo"
                   Grid.Column="0"
                   Grid.Row="2"
@@ -248,7 +259,6 @@
             <DataTemplate>
 
               <StackPanel Orientation="Horizontal">
-                <!--<CheckBox></CheckBox>-->
                 <TextBlock Text="{Binding Name}"></TextBlock>
               </StackPanel>
             </DataTemplate>

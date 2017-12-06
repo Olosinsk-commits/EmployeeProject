@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
@@ -188,6 +189,21 @@ namespace Employees
         public List<Employee> GetRts
         {
             get { return _reports; }
+        }
+
+        public List<string> GRT
+        {
+
+            get
+            {
+                List<string> listString;
+                return listString = _reports.Select(x => x.ToString()).Distinct().ToList();
+            }
+        }
+
+        public ObservableCollection<Employee> GetRtsC
+        {
+            get { return new ObservableCollection<Employee>( _reports); }
         }
 
         #region Enumerate reports for Manager

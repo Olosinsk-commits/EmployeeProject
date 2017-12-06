@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
+using System.Collections.Specialized;
+using System.Linq;
 
 namespace Employees
 {
@@ -11,10 +13,18 @@ namespace Employees
     public partial class CompDetails : Page
     {
         Employee empl;
+
+
         private EmployeeList emplL;
         //private float amount;
         #region Constructors
         Manager mngR;
+
+
+
+        public Employee testEmp
+        { get; set; } = new PTSalesPerson("Samr", "Abbott", DateTime.Parse("8/11/1984"), 20000, "525-76-5030", 20);
+
         public CompDetails()
         {
             InitializeComponent();
@@ -25,12 +35,13 @@ namespace Employees
         // Custom constructor to pass Employee object
         public CompDetails(object data, EmployeeList emplLT) : this()
         {
-
-
             // Bind context to Employee
             this.DataContext = data;
             emplL = emplLT;
             BonusNumber.DataContext = this;
+
+
+            //SpareProp2Combo.DataContext = this;
             //amount = 100;
             //this.DataContext = list;
             //emplL = MainWindow.GetList;
@@ -61,22 +72,18 @@ namespace Employees
                     Manager mng = (Manager)data;
                     mngR = mng;
                     SpareProp2Combo.ItemsSource = emplL;
+                    var reports =mng.GetRts;
                     SpareProp2Value.ItemsSource = mng.GetRts;
+                    //mngR.AddReport(testEmp);
                 }
             }
         }
         #endregion
 
-
-        //public float Bonus
-        //{
-        //    get { return amount; }
-        //    set { amount = value; }
-        //}
         public float BonusTemp
         {
             get; set;
-        } 
+        } = 500;
        
 
         // Handle give promotion button click
@@ -89,14 +96,8 @@ namespace Employees
             object obj = DataContext;
             DataContext = null;
             DataContext = obj;
-
         }
 
-        void RemoveBackEntry(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.GoBack();
-
-        }
 
         private void Bonus_Click(object sender, RoutedEventArgs e)
         {
@@ -104,11 +105,6 @@ namespace Employees
             object obj = DataContext;
             DataContext = null;
             DataContext = obj;
-
-            //this.NavigationService.Navigate(new CompDetails(this.empl, this.emplL));
-            //empl.Pay =Pay;
-            //InitializeComponent();
-            //this.Refresh();
         }
 
         public void Refresh()
@@ -117,44 +113,43 @@ namespace Employees
         }
 
         // Handle enable/disable of Details and Expenses buttons
-        private void Button_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void Button_CanExecuteAReport(object sender, CanExecuteRoutedEventArgs e)
         {
             // Check if an Employee is selected to enable Review button
-            e.CanExecute = RBt.IsPressed;
+            e.CanExecute = SpareProp2Combo.SelectedIndex >= 0;
         }
 
+        private void Button_CanExecuteRReport(object sender, CanExecuteRoutedEventArgs e)
+        {
+            // Check if an Employee is selected to enable Review button
+            e.CanExecute = SpareProp2Value.SelectedIndex >= 0;
+        }
+
+
         // Handle Expenses button click
-    
+
         private void RemoveReport_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             //SpareProp2Combo.Items.Remove(SpareProp2Combo.SelectedItem);
+            this.NavigationService.Navigate(new CompDetails(empl, emplL));
+        }
 
-            ///mngR.RemoveReport(SpareProp2Combo.SelectionBoxItem);
+        private void ReportAdd_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            //SpareProp2Combo.Items.Remove(SpareProp2Combo.SelectedItem);
             this.NavigationService.Navigate(new CompDetails(empl, emplL));
         }
 
 
         private void RemoveR_Click(object sender, RoutedEventArgs e)
         {
-            //SpareProp2Combo.Items.Remove(SpareProp2Combo.SelectedItem);
-            this.NavigationService.Navigate(new CompDetails(this.empl, this.emplL));
-
-            //InitializeComponent();
-            //this.Refresh();
+           mngR.RemoveReport(testEmp);
+            //this.NavigationService.Navigate(new CompDetails(empl, emplL));
         }
 
         private void CommandBinding_Executed(object sender, RoutedEventArgs e)
+
         {
-            //List<Employee> empList1;
-
-            if (this.DataContext is Manager)
-            {
-                //empList1 = (List<Employee>)empList.FindAll(obj => !(obj is Executive));
-            }
-
-            else if (this.DataContext is Executive)
-            {
-            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
